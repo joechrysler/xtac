@@ -1,0 +1,3 @@
+XtacDB
+   Open           :  Opens a connection to mysql and ldap, binds to ldap
+   Close          :  Closes ldap and mysql connections

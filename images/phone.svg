@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="230.3125"
+   height="155.40625"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.44+devel"
+   sodipodi:docbase="C:\Documents and Settings\Molumen\Desktop"
+   sodipodi:docname="rickvanderzwet_Phone.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   sodipodi:modified="true"
+   version="1.0">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.979899"
+     inkscape:cx="149.00015"
+     inkscape:cy="87.776051"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:window-width="1312"
+     inkscape:window-height="778"
+     inkscape:window-x="97"
+     inkscape:window-y="32" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>phone icon</dc:title>
+        <dc:date>07 12 2006</dc:date>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>molumen, Rick van der Zwet</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <cc:license
+           rdf:resource="http://web.resource.org/cc/PublicDomain" />
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>phone</rdf:li>
+            <rdf:li>line_art</rdf:li>
+            <rdf:li>icon</rdf:li>
+            <rdf:li>black</rdf:li>
+            <rdf:li>white</rdf:li>
+            <rdf:li>silhouette</rdf:li>
+            <rdf:li>number</rdf:li>
+            <rdf:li>compose</rdf:li>
+            <rdf:li>allo</rdf:li>
+            <rdf:li>moshi-moshi</rdf:li>
+            <rdf:li>ring</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+        <dc:description>phone icon</dc:description>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://web.resource.org/cc/PublicDomain">
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/Reproduction" />
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/Distribution" />
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-16.921105,-20.658177)">
+    <path
+       style="opacity:1;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 132.07736,26.792695 C 98.400734,26.792695 67.750781,38.082645 44.894041,56.5254 C 33.894508,60.113054 26.012478,69.753943 26.012478,81.077188 C 26.012478,85.261057 27.094032,89.200986 29.005896,92.705468 L 79.750097,92.705468 C 81.661961,89.200986 82.772298,85.261067 82.772298,81.077188 C 82.772298,74.564624 80.173173,68.605888 75.864409,64.037729 C 92.560206,55.394367 111.71942,50.480997 132.07736,50.480997 C 152.4353,50.481006 171.59451,55.394376 188.29031,64.037729 C 183.98154,68.605879 181.38242,74.564624 181.38242,81.077188 C 181.38243,85.261057 182.46397,89.200986 184.37584,92.705468 L 235.12004,92.705468 C 237.03191,89.200986 238.14224,85.261067 238.14224,81.077188 C 238.14225,69.753943 230.26021,60.113044 219.26067,56.5254 C 196.40394,38.082645 165.75399,26.792695 132.07736,26.792695 z M 132.07736,53.157804 C 105.24268,53.157804 83.463096,76.188568 83.463087,104.56401 C 83.463087,106.93794 83.628536,109.26951 83.923613,111.55825 C 79.195688,114.28697 76.008324,119.38614 76.008324,125.2589 L 76.008324,154.09933 C 76.008324,162.86187 83.076356,169.92992 91.838902,169.92991 L 172.31581,169.92991 C 181.07835,169.92991 188.14639,162.86189 188.14639,154.09933 L 188.14639,125.2589 C 188.14639,119.39135 184.95209,114.31754 180.2311,111.58703 C 180.52876,109.28859 180.69163,106.94846 180.69163,104.56401 C 180.69163,76.188586 158.91204,53.157777 132.07736,53.157804 z M 132.07736,68.499074 C 146.07248,68.499083 157.43507,79.017938 157.43507,91.985896 C 157.43508,104.95387 146.07248,115.5015 132.07736,115.5015 C 118.08223,115.50152 106.71965,104.95386 106.71965,91.985896 C 106.71966,79.017956 118.08224,68.499074 132.07736,68.499074 z "
+       id="path2198" />
+  </g>
+</svg>
