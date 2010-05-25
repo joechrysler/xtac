@@ -48,6 +48,37 @@ class LDAP extends XtacData {
 		return $this;
 	}
 
+	public function resetPassword($inUsername) {
+		$info = null;
+		$newPass = '';
+		$update = array();
+		$userdn = '';
+		$FileHandle = null;
+		$LogMessage = '';
+
+		$info = $this->search('o=svsu', "(cn=$inUsername)");
+
+		if ($info['count'] === 1) {
+			$userdn = $info[0]['dn'];
+			$newPass = generatePassword();
+
+			// Prepare updates:
+			$update['userPassword'] = $newpass;
+			$update['loginGraceLimit'] = '20';
+			$update['loginGraceRemaining'] = '5';
+			$update['passwordExpirationTime'] = '20080223132322Z';
+
+			//Fail with an error message if the update is unsuccesful
+			$this->update($userdn, $update)
+
+			$LogMessage = date('r') . " - $_SERVER['PHP_AUTH_USER'] reset the password on $userdn \n";
+			file_put_contents('/var/log/passreset.log', $LogMessage, FILE_APPEND);
+
+			echo $newPass;
+		}
+
+		return $this;
+	}
 
 	//## Distinct methods ######################################
 	public function rebind() {
@@ -83,5 +114,11 @@ class LDAP extends XtacData {
 		return ldap_get_entries($this->connection, $ldapSearch);
 	}
 
+	private function update($inUserName, $inArrUpdate) {
+		return (@ldap_modify($this->connection, $inUserName, $inArrUpdate))?
+			true:
+			false;
+	}
+	
 }
 ?>
