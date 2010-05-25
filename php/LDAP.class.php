@@ -123,9 +123,12 @@ class LDAP extends XtacData {
 	}
 
 	private function update($inUserName, $inArrUpdate) {
-		return (@ldap_modify($this->connection, $inUserName, $inArrUpdate))?
-			true:
-			false;
+		$tempArray = array();
+		foreach ($inArrUpdate as $key => $value) {
+			$tempArray[$key] = $value;
+			ldap_modify($this->connection, $inUserName, $tempArray);
+			$tempArray = array();
+		}
 	}
 	
 
