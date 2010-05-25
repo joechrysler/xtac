@@ -1,87 +1,87 @@
 <?php
 
 class LDAP extends XtacData {
-	// ## Class-variables ######################################
-	protected $host;
-	protected $database;
-	protected $hasConnection;
-	protected $connection;
-	protected $lastBindDn;
-	protected $lastBindPw;
+   // ## Class-variables ######################################
+   protected $host;
+   protected $database;
+   protected $hasConnection;
+   protected $connection;
+   protected $lastBindDn;
+   protected $lastBindPw;
+
+   
+   //## Connection Management #################################
+   public function connect($inUserName, $inPassword){
+      $this->hasConnection = true;
+      $this->connection = ldap_connect($this->host);
+
+      $this->bind($inUserName, $inPassword);
+
+      $this->connection;
+
+      return $this;
+   }
+   public function disconnect() {
+      ldap_unbind($this->connection);
+
+      return $this;
+   }
 
 
-	//## Connection Management #################################
-	public function connect($inUserName, $inPassword){
-		$this->hasConnection = true;
-		$this->connection = ldap_connect($this->host);
+   //## Parent Methods ########################################
+  public function getUser($inUsername, $inCol, &$outUser){
+   $ldapArray = array();
+   $tempResult = array();
+   $ldapResults = null;
 
-		$this->bind($inUserName, $inPassword);
+   $ldapResults = $this->search('o=svsu', "(cn=$inUsername)", $inCol);
+   foreach ($ldapResults[0] as $key => $value)
+      if (!is_numeric($key)) {
+         $ldapArray[$key] = is_array($value)?
+            $value[0]:
+            $value;
+         $ldapArray[$key] = parent::translateValue($ldapArray[$key]);
+      }
 
-		$this->connection;
+   $outUser = $ldapArray;
 
-		return $this;
-	}
-	public function disconnect() {
-		ldap_unbind($this->connection);
-
-		return $this;
-	}
-
-
-	//## Parent Methods ########################################
-	public function getUser($inUsername, $inCol, &$outUser){
-		$ldapArray = array();
-		$tempResult = array();
-		$ldapResults = null;
-
-		$ldapResults = $this->search('o=svsu', "(cn=$inUsername)", $inCol);
-		foreach ($ldapResults[0] as $key => $value)
-			if (!is_numeric($key)) {
-				$ldapArray[$key] = is_array($value)?
-					$value[0]:
-					$value;
-				$ldapArray[$key] = parent::translateValue($ldapArray[$key]);
-			}
-
-		$outUser = $ldapArray;
-
-		return $this;
-	}
+   return $this;
+  }
 
 
-	//## Distinct methods ######################################
-	public function rebind() {
-		$this->bind($this->lastBindDn, $this->lastBindPw);
+   //## Distinct methods ######################################
+  public function rebind() {
+    $this->bind($this->lastBindDn, $this->lastBindPw);
 
-		return $this;
-	}
+    return $this;
+  }
 
 
-	//## Private Methods #######################################
-	private function bind($inDn, $inPassword) {
-		//Set Variables in case we need to reconnect
-		$this->lastBindDn = $inDn;
-		$this->lastBindPw = $inPassword;
+   //## Private Methods #######################################
+  private function bind($inDn, $inPassword) {
+    //Set Variables in case we need to reconnect
+    $this->lastBindDn = $inDn;
+    $this->lastBindPw = $inPassword;
 
-		ldap_bind($this->connection, $inDn, $inPassword);
+    ldap_bind($this->connection, $inDn, $inPassword);
+    
+    return true;
+  }
+   private function search($inBase, $inFilter, $inArrAttribute = null) {
 
-		return true;
-	}
-	private function search($inBase, $inFilter, $inArrAttribute = null) {
+      $ldapSearch = false;       // Such-Handler
+      $arrResult = Array();      // Suchergebnisse
 
-		$ldapSearch = false;       // Such-Handler
-		$arrResult = Array();      // Suchergebnisse
+      // Fail if there is no open connection to LDAP
+      if (!$this->hasConnection())
+         return false;
 
-		// Fail if there is no open connection to LDAP
-		if (!$this->hasConnection())
-			return false;
+      $ldapSearch = (is_array($inArrAttribute))? 
+         ldap_search($this->connection, $inBase, $inFilter, $inArrAttribute):
+         ldap_search($this->connection, $inBase, $inFilter);
 
-		$ldapSearch = (is_array($inArrAttribute))? 
-			ldap_search($this->connection, $inBase, $inFilter, $inArrAttribute):
-			ldap_search($this->connection, $inBase, $inFilter);
-
-		return ldap_get_entries($this->connection, $ldapSearch);
-	}
+      return ldap_get_entries($this->connection, $ldapSearch);
+   }
 
 }
 ?>

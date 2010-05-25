@@ -45,6 +45,8 @@ function resetPassword(inUsername) {
 
 $().ready(function () {
 	$("#searchField")
+		.focus()
+
 		.autocomplete('search.php', {
 			dataType: "json",
 			width: 200,
@@ -64,8 +66,10 @@ $().ready(function () {
 				return format(item);
 				}
 			})
+
 		.result(function (e, item) {
 			getPerson(item);
 			})
+
 		.focus();
 	});

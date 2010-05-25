@@ -1,5 +1,7 @@
 <?php
 	session_start();
+	require_once('php/DataBase.class.php');
+	require_once('config.php');
 ?>
 <html>
 	<head>
@@ -27,11 +29,9 @@
 
 	<body>
 		<h1>Admin Tools</h1>
-			<form autocomplete="off">
-			   <p>
-				 <input type="text" id="searchField" name="searchField" />
-			   </p>
-			</form>
+
+		<?php require_once('forms/withAutoComplete.html');?>
+
 		<div id="result"></div>
 	</body>
 </html>
