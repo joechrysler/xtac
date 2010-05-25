@@ -1,6 +1,5 @@
 <?php
 
-require_once('print_nice.php');
 require_once('Field.class.php');
 
 class category{
