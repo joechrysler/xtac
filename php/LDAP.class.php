@@ -65,7 +65,7 @@ class LDAP extends XtacData {
 
 			// Prepare updates:
 			$update['userPassword'] = $newPass;
-			$update['loginGraceLimit'] = '20';
+			//$update['loginGraceLimit'] = '20';
 			$update['loginGraceRemaining'] = '5';
 			$update['passwordExpirationTime'] = '20080223132322Z';
 
@@ -124,11 +124,16 @@ class LDAP extends XtacData {
 
 	private function update($inUserName, $inArrUpdate) {
 		$tempArray = array();
+		$success = false;
+
 		foreach ($inArrUpdate as $key => $value) {
 			$tempArray[$key] = $value;
-			ldap_modify($this->connection, $inUserName, $tempArray);
+			$success = (ldap_modify($this->connection, $inUserName, $tempArray))?
+				true:
+				false;
 			$tempArray = array();
 		}
+		return $success;
 	}
 	
 
