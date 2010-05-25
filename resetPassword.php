@@ -8,7 +8,7 @@ $ldc = new LDAP($ldap_url);
 $usercn = $_GET['cn'];
 
 $ldc
-	->connect($ldap_user, $ldap_pass)
+	->connect($pw_user, $pw_pass)
 	->resetPassword($usercn)
 	->disconnect();
 
