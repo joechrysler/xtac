@@ -23,6 +23,8 @@ if($_POST['confirm'] != "1")
 	die;
 }
 
+//test comment
+
 if ($connection = @ldap_connect($ldap_url))
 {
 	if ($bind = @ldap_bind($connection, $pw_user, base64_decode($pw_pass)))
