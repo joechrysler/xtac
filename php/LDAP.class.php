@@ -64,7 +64,7 @@ class LDAP extends XtacData {
 			$newPass = $this->generatePassword();
 
 			// Prepare updates:
-			$update['userPassword'] = $newpass;
+			$update['userPassword'] = $newPass;
 			$update['loginGraceLimit'] = '20';
 			$update['loginGraceRemaining'] = '5';
 			$update['passwordExpirationTime'] = '20080223132322Z';
@@ -73,10 +73,11 @@ class LDAP extends XtacData {
 			$this->update($userdn, $update);
 
 			//Log String
-			$LogMessage = date('r') . ' - ' . $_SERVER['PHP_AUTH_USER'] . ' reset the password on ' . $userdn . "\n";
-			file_put_contents('/var/log/passreset.log', $LogMessage, FILE_APPEND);
+			$LogMessage = @date('r') . ' - ' . $_SERVER['PHP_AUTH_USER'] . ' reset the password on ' . $userdn . "\n";
+			//file_put_contents('/var/log/passreset.log', $LogMessage, FILE_APPEND);
 
 			echo $newPass;
+			echo '<br/>',$LogMessage;
 		}
 
 		return $this;
