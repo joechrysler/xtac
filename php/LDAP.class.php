@@ -1,4 +1,5 @@
 <?php
+require_once 'XtacData.class.php';
 
 class LDAP extends XtacData {
 	// ## Class-variables ######################################
