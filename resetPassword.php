@@ -1,6 +1,7 @@
 <?php
 
 require_once 'config.php';	// Configuration script
+require_once 'php/LDAP.class.php';
 
 $ldc = new LDAP($ldap_url);
 
