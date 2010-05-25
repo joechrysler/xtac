@@ -18,9 +18,9 @@ $success = false;
 // Perform ldapsearch to find user's current dn...
 if($_POST['confirm'] != "1")
 {
-   echo "You did not confirm this operation!!!<br /><br />";
-   echo "<a href='https://www.svsu.edu/netserv/xtac/'>Back to XTAC</a>";
-   die;
+	echo "You did not confirm this operation!!!<br /><br />";
+	echo "<a href='https://www.svsu.edu/netserv/xtac/'>Back to XTAC</a>";
+	die;
 }
 
 if ($connection = @ldap_connect($ldap_url))
@@ -29,22 +29,22 @@ if ($connection = @ldap_connect($ldap_url))
 	{
 		$tempfilter = "cn=$usercn";
 		$results = ldap_search($connection, "o=svsu", $tempfilter);
-		
+
 		$info = ldap_get_entries($connection, $results);
-		
+
 		if($info["count"] == 1)
 		{
 			$userdn = $info[0]["dn"];
-			
+
 			// Get a random password to use:
 			$newpass = generatePassword();
-			
+
 			// Prepare updates:
 			$update["userPassword"] = $newpass;
 			$update1["loginGraceLimit"] = '20';
 			$update2["loginGraceRemaining"] = '5';
 			$update3["passwordExpirationTime"] = '20080223132322Z';
-			
+
 			// Execute updates:
 			if(@ldap_modify($connection, $userdn, $update))
 				$success = true;
@@ -52,8 +52,8 @@ if ($connection = @ldap_connect($ldap_url))
 			@ldap_modify($connection, $userdn, $update1);
 			@ldap_modify($connection, $userdn, $update2);
 			@ldap_modify($connection, $userdn, $update3);
-			
-					
+
+
 			ldap_close($connection);
 		}
 	}
@@ -74,8 +74,8 @@ if($success)
 	echo "<b>*** NEW PASSWORD HAS BEEN EXPIRED ***</b><br /><br />";
 	echo "Please instruct the user to change their password and reset their challenge questions!<br /><br />";
 	echo "<a href='https://www.svsu.edu/netserv/xtac/'>Back to XTAC</a>";
-	
-	
+
+
 } else {
 	echo "FAILED!";
 }
@@ -83,31 +83,31 @@ if($success)
 function generatePassword($length = 8)
 {
 
-  // start with a blank password
-  $password = "";
+	// start with a blank password
+	$password = "";
 
-  // define possible characters
-  $possible = "0123456789bcdfghjkmnpqrstvwxyz"; 
-    
-  // set up a counter
-  $i = 0; 
-    
-  // add random characters to $password until $length is reached
-  while ($i < $length) { 
+	// define possible characters
+	$possible = "0123456789bcdfghjkmnpqrstvwxyz"; 
 
-    // pick a random character from the possible ones
-    $char = substr($possible, mt_rand(0, strlen($possible)-1), 1);
-        
-    // we don't want this character if it's already in the password
-    if (!strstr($password, $char)) { 
-      $password .= $char;
-      $i++;
-    }
+	// set up a counter
+	$i = 0; 
 
-  }
+	// add random characters to $password until $length is reached
+	while ($i < $length) { 
 
-  // done!
-  return $password;
+		// pick a random character from the possible ones
+		$char = substr($possible, mt_rand(0, strlen($possible)-1), 1);
+
+		// we don't want this character if it's already in the password
+		if (!strstr($password, $char)) { 
+			$password .= $char;
+			$i++;
+		}
+
+	}
+
+	// done!
+	return $password;
 
 }
 

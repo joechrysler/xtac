@@ -72,7 +72,7 @@ class Person
 					'</div>';
 
 		require_once('forms/historyForm.html');
-	
+
 		return $this;
 	}
 	public function drawPasswordResetForm() {
