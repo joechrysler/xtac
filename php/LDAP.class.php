@@ -71,7 +71,7 @@ class LDAP extends XtacData {
 
 			//Fail with an error message if the update is unsuccesful
 			if ($this->update($userdn, $update))
-				echo 'AAAAAHHHHHHH!';
+				echo 'success<br />';
 			else {
 				echo 'fail';
 				return false;
