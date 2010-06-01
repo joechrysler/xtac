@@ -47,6 +47,11 @@ div.dg {
 	border-top: 1px dotted #BBB;
 	text-align: left;
 }
+
+div.resetPassword {
+	border-top-style: none;
+}
+
 div.error {
 	border-style: none;
 	color: white;

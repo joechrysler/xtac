@@ -12,21 +12,37 @@ function addToHistory(inID, inComment) {
 }
 
 function displayResults(item) {
-	$('#result').hide().html(item).show();
+	$('#result')
+		.hide()
+		.html(item)
+		.show();
 
 	$('dl').addClass("dontsplit");
 
-	$('#result').columnize({
-		width: 350,
-		lastNeverTallest: true
-	});
+	$('#result')
+		.columnize({
+			width: 354,
+			lastNeverTallest: true
+		});
 
 
-	$('#addComments').submit(function () {
-		addToHistory($('#PersonID').next().html(), $('#newComments').val());
-		return false;
-	});
+	$('#addComments')
+		.submit(function () {
+			addToHistory($('#PersonID').next().html(), $('#newComments').val());
+			return false;
+		});
+	
+	$('#resetPassword')
+		.submit(function () {
+			$('p#dialog-username').html($('input#username').val());
+			$('#dialog').dialog('open');
+			return false;
+		});
 
+	$('#cmdResetPassword')
+		.mousedown(function () {$(this).addClass('active');})
+		.mouseup(function () {$(this).removeClass('active');})
+		.mouseleave(function () {$(this).removeClass('active');});
 }
 
 function getPerson(person) {
@@ -37,9 +53,12 @@ function getPerson(person) {
 }
 
 function resetPassword(inUsername) {
-	var resetURL = 'resetPassword.php?username=' + $.trim(inUsername);
+	var resetURL = 'resetPassword.php?cn=' + $.trim(inUsername);
+	
 	$.get(resetURL, function (data) {
-		$('#result').prepend(data);
+		$('#resetPassword')
+			.hide()
+			.before(data);
 	});
 }
 
@@ -55,7 +74,6 @@ $().ready(function () {
 						value: row.NickName,
 						/*result: row.NickName + " " + row.LastName + " : " + $.trim(row.PersonID)*/
 						result: ''
-						//TODO Make the textbox clear after a result is successfully returned
 						}
 					});
 				},
@@ -65,7 +83,18 @@ $().ready(function () {
 				}
 			})
 		.result(function (e, item) {
+			$(this).addClass('moved');
 			getPerson(item);
 			})
 		.focus();
+
+	$('#dialog').dialog({
+		autoOpen: false,
+		width: 400,
+		modal: true,
+		resizable: false,
+		buttons: {
+			'Reset Password': function() {resetPassword($('input#username').val());$(this).dialog('close');},
+			}
+		});
 	});

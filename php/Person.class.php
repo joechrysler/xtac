@@ -71,10 +71,25 @@ class Person
 					'<dd class="comments">',$record['Comments'],'</dd>',"\n\t\t",
 					'</div>';
 
-		require_once('forms/historyForm.html');
+		require_once 'forms/historyForm.html';
+
+		echo '</dl>';
 
 		return $this;
 	}
+	public function drawPasswordReset($inUsername){
+		echo '<dl id="passwordReset">', "\n\t";
+			//'<h2>password</h2>', "\n\t";
+
+		// Draw the form for reseting a password
+		echo '<form id="resetPassword" autocomplete="off">', "\n\t",
+			'<input type="hidden" name="username" id="username" value="',$inUsername,'" />',"\n\t",
+			'<input type="submit" id="cmdResetPassword" name="cmdResetPassword" value="Reset Password" />', "\n",
+			'</form>';
+
+		return $this;
+	}
+
 	public function drawPasswordResetForm() {
 		echo '<dl id="passwordReset">', "\n\t",
 			'<h2>reset password</h2>', "\n\t";

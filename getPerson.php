@@ -86,5 +86,7 @@ require_once 'php/LDAP.class.php';
 		$Person->DisplayMSSoftwareEligibility($EligibleForSoftwareCheckout);
 	else
 		$Person->drawHistory($SupportHistory);
+	if ($AuthorizationLevel === 'admin')
+		$Person->DrawPasswordReset($username);
 
 ?>
