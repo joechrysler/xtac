@@ -1,0 +1,45 @@
+%html
+  %head
+    %title SVSU Administrator Tools
+
+    -# Style Sheets
+    %link{:href => "css/master.css",
+      :rel => "stylesheet",
+      :type => "text/css",
+      :media => "screen",
+      :charset => "utf-8"}
+    %link{:href => "css/jquery.autocomplete.css",
+      :rel => "stylesheet",
+      :type => "text/css",
+      :media => "screen",
+      :charset => "utf-8"}
+    %link{:href => "css/jquery-ui.css",
+      :rel => "stylesheet",
+      :type => "text/css",
+      :media => "screen",
+      :charset => "utf-8"}
+
+    -# Scripts 
+    %script{:src => "js/jquery.min.js",
+      :type => "text/javascript"}
+    %script{:src => "js/jquery-ui.min.js",
+      :type => "text/javascript"}
+    %script{:src => "js/jquery.autocomplete.min.js",
+      :type => "text/javascript"}
+    %script{:src => "js/autocolumn.min.js",
+      :type => "text/javascript"}
+    %script{:src => "js/main.js",
+      :type => "text/javascript"}
+
+  %body
+    %h1 Admin Tools
+    %form{:autocomplete => "off"}
+      %input#searchField{:type => "text"}/
+    #result
+    #dialog{:title => "Confirm Password Reset"}
+      %p
+        %span.ui-icon.ui-icon-alert{:style => "float:left; margin:0 7px 0 0;"}
+        You are about to reset the password for:
+        %p#dialog-username
+
+        
