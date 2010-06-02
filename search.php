@@ -18,5 +18,18 @@ $MySQLDatabase
 	->getRole($_SERVER['PHP_AUTH_USER'], $role)
 	->searchUsers($_GET['q'], $results);
 
-echo json_encode($results);
+// echo json_encode($results);
+// Replacement for json_encode.  Remove after netserv upgrades to php 5.3
+$firstItem = true;
+echo '[{';
+foreach ($results as $arrays) {
+	foreach ($arrays as $key => $value) {
+		if (!$firstItem) {
+			echo ',';
+		}
+		echo '"',$key,'":"',$value,'"';
+		$firstItem = false;
+	}
+}
+echo '}]';
 ?>
