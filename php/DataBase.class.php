@@ -161,11 +161,12 @@ class DataBase extends XtacData {
 		return $this;
 	}
 	public function searchUsers($inCriteria, &$outResults) {
-		$Filter = "PersonID LIKE '%$inCriteria%' or "
-			. "LastName like '%$inCriteria%' or "
-			. "NickName LIKE '%$inCriteria%'";
+		$Filter = "PersonID like '%$inCriteria%' or ".
+				"LastName like '%$inCriteria%' or ".
+				"NickName like '%$inCriteria%' or ".
+				"Login like '%$inCriteria%'";
 		$SortOrder = 'LastName, NickName';
-		$SelectedColumns = 'LastName, NickName, PersonID';
+		$SelectedColumns = 'LastName, NickName, PersonID, Login';
 
 		$outResults = $this->query('xtac', $Filter, $SortOrder, $SelectedColumns);
 

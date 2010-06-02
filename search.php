@@ -3,7 +3,7 @@
 require_once 'php/DataBase.class.php';
 require_once 'config.php';
 
-$MySQLDatabase = new DataBase($MySQLDatabase_host, $MySQLDatabase_name);
+$MySQLDatabase = new DataBase($db_host, $db_name);
 $role = '';
 $results = array();
 
@@ -14,7 +14,7 @@ if (!@$_GET['q']){
 }
 
 $MySQLDatabase
-	->connect($MySQLDatabase_user, $MySQLDatabase_pass)
+	->connect($db_user, $db_pass)
 	->getRole($_SERVER['PHP_AUTH_USER'], $role)
 	->searchUsers($_GET['q'], $results);
 
