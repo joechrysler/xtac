@@ -8,10 +8,12 @@ require_once 'php/DataBase.class.php';
 // ----------------
 
    $MySQL = new DataBase($db_host, $db_name);
-   //$AuthorizedUsername = $_SERVER['PHP_AUTH_USER'];
-   $AuthorizationLevel = '';
-   $AuthorizedUsername = 'bob';
+   $AuthorizedUsername = $_SERVER['PHP_AUTH_USER'];
+   $AuthorizationLevel = 'asdfasdfasdf';
+   //$AuthorizedUsername = 'bob';
 
+
+echo 'hello?';
 
    $MySQL
       ->connect($db_user, $db_pass)

@@ -89,10 +89,11 @@ class Person
 		return $this;
 	}
 
-	public function drawPasswordResetForm($inUsername) {
-		echo '<dl id="passwordReset">', "\n\t";
-		require_once 'forms/passwordReset.php';
-		echo '</dl>';
+	public function drawPasswordResetForm() {
+		echo '<dl id="passwordReset">', "\n\t",
+			'<h2>reset password</h2>', "\n\t";
+
+		require_once 'forms/passwordReset.html';
 
 		return $this;
 	}

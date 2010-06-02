@@ -89,6 +89,6 @@ require_once 'php/LDAP.class.php';
 	else
 		$Person->drawHistory($SupportHistory);
 	if ($PasswordResetAllowed == true)
-		$Person->drawPasswordResetForm($username);
+		$Person->drawPasswordReset($username);
 
 ?>
