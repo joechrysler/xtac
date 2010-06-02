@@ -83,9 +83,7 @@ require_once 'php/LDAP.class.php';
 // ----------------------------------------
 
 	$Person->draw();
-
-	echo $PasswordResetAllowed;
-
+	
 	if ($AuthorizationLevel === 'library')
 		$Person->DisplayMSSoftwareEligibility($EligibleForSoftwareCheckout);
 	else

@@ -1,5 +1,6 @@
 <?php
 require_once 'XtacData.class.php';
+require_once 'print_nice.php';
 
 class DataBase extends XtacData {
 
@@ -34,7 +35,7 @@ class DataBase extends XtacData {
 
 		$tempArray = $this->query('xtac', "PersonID like '$inID'", '', $inCol);
 
-		foreach (@$tempArray[0] as $key => $value)
+		foreach ($tempArray[0] as $key => $value)
 			$outUser[$key] = parent::translateValue($value);
 
 		return $this;
