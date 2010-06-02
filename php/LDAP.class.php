@@ -65,21 +65,18 @@ class LDAP extends XtacData {
 
 			// Prepare updates:
 			$update['userPassword'] = $newPass;
-			//$update['loginGraceLimit'] = '20';
+			$update['loginGraceLimit'] = '20';
 			$update['loginGraceRemaining'] = '5';
 			$update['passwordExpirationTime'] = '20080223132322Z';
 
 			// Fail with an error message if the update is unsuccesful
-				//if ($this->update($userdn, $update))
-					//echo 'success<br />';
-				//else {
-					//echo 'fail';
-					//return false;
-				//}
+			if (!$this->update($userdn, $update))
+				return false;
+			}
 
 			//Log String
 			$LogMessage = @date('r') . ' - ' . $_SERVER['PHP_AUTH_USER'] . ' reset the password on ' . $userdn . "\n";
-			//file_put_contents('/var/log/passreset.log', $LogMessage, FILE_APPEND);
+			file_put_contents('/var/log/passreset.log', $LogMessage, FILE_APPEND);
 
 			echo '<div class="dg resetPassword">',
 				'<dt>New Password:</dt>',

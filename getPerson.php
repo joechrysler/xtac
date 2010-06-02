@@ -33,6 +33,7 @@ require_once 'php/LDAP.class.php';
 // fetched from the MySQL database
 	$AuthorizedUsername = $_SERVER['PHP_AUTH_USER'];
 	$AuthorizationLevel = '';
+	$PasswordResetAllowed = false;
 
 // A list of all the facts that the university should know about someone
 // used to build the Person object during the import phase.
@@ -53,6 +54,7 @@ require_once 'php/LDAP.class.php';
 		->getUser($Person->id, $AuthorizedMySQLFields, $MySQLRecord)
 		->getHistory($Person->id, $SupportHistory)
 		->checkMSEligibility($Person->id, $EligibleForSoftwareCheckout)
+		->canResetPassword($AuthorizedUsername, $PasswordResetAllowed)
 		->getAttributes($PersonalAttributes)
 		->disconnect();
 
@@ -82,11 +84,13 @@ require_once 'php/LDAP.class.php';
 
 	$Person->draw();
 
+	echo $PasswordResetAllowed;
+
 	if ($AuthorizationLevel === 'library')
 		$Person->DisplayMSSoftwareEligibility($EligibleForSoftwareCheckout);
 	else
 		$Person->drawHistory($SupportHistory);
-	if ($AuthorizationLevel === 'admin')
-		$Person->DrawPasswordReset($username);
+	if ($PasswordResetAllowed == true)
+		$Person->drawPasswordResetForm($username);
 
 ?>

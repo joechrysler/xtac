@@ -32,9 +32,9 @@ class DataBase extends XtacData {
 	public function getUser($inID, $inCol, &$outUser){
 		$tempArray = array();
 
-		$tempArray = $this->query('xtac', "PersonID like '%$inID'", '', $inCol);
+		$tempArray = $this->query('xtac', "PersonID like '$inID'", '', $inCol);
 
-		foreach ($tempArray[0] as $key => $value)
+		foreach (@$tempArray[0] as $key => $value)
 			$outUser[$key] = parent::translateValue($value);
 
 		return $this;
@@ -116,7 +116,7 @@ class DataBase extends XtacData {
 		$result = array();
 
 		$result = $this->query('xtac', "PersonID like '%$inID'", '', 'RegEmployee');
-		$outResult = ($result[0]['RegEmployee'] === 'Y')?
+		$outResult = (@$result[0]['RegEmployee'] === 'Y')?
 			true:
 			false;
 
@@ -132,8 +132,8 @@ class DataBase extends XtacData {
 		//## Fail silently if no-one has that userID
 		if (!@$result[0])
 			$outUsername = false;
-
-		$outUsername = $result[0]['Login'];
+		else
+			$outUsername = $result[0]['Login'];
 
 		return $this;
 	}
@@ -161,10 +161,34 @@ class DataBase extends XtacData {
 		return $this;
 	}
 	public function searchUsers($inCriteria, &$outResults) {
-		$Filter = "PersonID like '%$inCriteria%' or ".
-				"LastName like '%$inCriteria%' or ".
-				"NickName like '%$inCriteria%' or ".
-				"Login like '%$inCriteria%'";
+		$searchTerms = array();
+
+		// User is searching in "last,first" or "last, first" format
+		if (strpos($inCriteria, ',')) {
+			$searchTerms = explode(',', $inCriteria);
+			$lastName = trim($searchTerms[0]);
+			$firstName = trim($searchTerms[1]);
+
+			$Filter = "Lastname like '%$lastName%' and ".
+					"NickName like '%$firstName%'";
+		}
+
+		// User is searching for in "first last" format
+		elseif (strpos($inCriteria, ' ')) {
+			$searchTerms = explode(' ', $inCriteria);
+
+			$Filter = "NickName like '%$searchTerms[0]%' and ".
+					"LastName like '$searchTerms[1]%'";
+		}
+
+		else {
+			$Filter = "PersonID like '%$inCriteria%' or ".
+					"LastName like '%$inCriteria%' or ".
+					"NickName like '%$inCriteria%' or ".
+					"Login like '%$inCriteria%'";
+		}
+
+
 		$SortOrder = 'LastName, NickName';
 		$SelectedColumns = 'LastName, NickName, PersonID, Login';
 

@@ -66,13 +66,12 @@ class Person
 		if (is_array($inArray))
 			foreach ($inArray as $record)
 				echo '<div class="dg">', "\n\t\t",
-					'<dt class="timestamp">',$record['TimeStamp'],'</dt>', "\n\t\t\t",
+					'<dt class="timestamp">',@date("F j, Y - g:i a", @strtotime($record['TimeStamp'])),'</dt>', "\n\t\t\t",
 					'<dd class="staff">',$record['StaffMember'],'</dd>',"\n\t\t\t",
 					'<dd class="comments">',$record['Comments'],'</dd>',"\n\t\t",
 					'</div>';
 
 		require_once 'forms/historyForm.html';
-
 		echo '</dl>';
 
 		return $this;
@@ -90,7 +89,7 @@ class Person
 		return $this;
 	}
 
-	public function drawPasswordResetForm() {
+	public function drawPasswordResetForm($inUsername) {
 		echo '<dl id="passwordReset">', "\n\t",
 			'<h2>reset password</h2>', "\n\t";
 
