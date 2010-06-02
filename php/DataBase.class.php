@@ -33,7 +33,7 @@ class DataBase extends XtacData {
 	public function getUser($inID, $inCol, &$outUser){
 		$tempArray = array();
 
-		$tempArray = $this->query('xtac', "PersonID like '$inID'", '', $inCol);
+		$tempArray = $this->query('xtac', "PersonID like '%$inID'", '', $inCol);
 
 		foreach ($tempArray[0] as $key => $value)
 			$outUser[$key] = parent::translateValue($value);
