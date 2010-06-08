@@ -183,10 +183,10 @@ class DataBase extends XtacData {
 		}
 
 		else {
-			$Filter = "PersonID like '%$inCriteria%' or ".
-					"LastName like '%$inCriteria%' or ".
-					"NickName like '%$inCriteria%' or ".
-					"Login like '%$inCriteria%'";
+			$Filter = "Login like '$inCriteria%' or ".
+					"LastName like '$inCriteria%' or ".
+					"NickName like '$inCriteria%' or ".
+					"PersonID like '%$inCriteria%'";
 		}
 
 

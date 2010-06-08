@@ -23,16 +23,16 @@ $MySQLDatabase
 $firstItem = true;
 $firstResult = true;
 echo '[';
-foreach ($results as $arrays) {
+foreach ($results as $matchingUsers) {
 	if (!$firstResult)
 		echo ',';
 
 	echo '{';
-	foreach ($arrays as $key => $value) {
+	foreach ($matchingUsers as $attribute => $value) {
 		if (!$firstItem)
 			echo ',';
 
-		echo '"',$key,'":"',$value,'"';
+		echo '"',$attribute,'":"',$value,'"';
 		$firstItem = false;
 	}
 	$firstItem = true;
