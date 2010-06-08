@@ -5,6 +5,9 @@
 	/*-webkit-column-gap: 1em;*/
 	/*column-width: 20em;*/
 	display: none;
+	width: 95%;
+	text-align: center;
+	margin: 0 auto;
 }
 
 dl {
@@ -12,7 +15,7 @@ dl {
 	line-height: 1.5em;
 	text-align: left;
 	overflow: hidden;
-	padding: 1em;
+	padding: .5em;
 	margin: 1.3em .6em;
 
 	/* Border Radius */
@@ -45,6 +48,7 @@ div.dg {
 	clear: both;
 	height: auto;
 	border-top: 1px dotted #BBB;
+	margin: .2em 0;
 	text-align: left;
 }
 
@@ -56,6 +60,7 @@ div.error {
 	border-style: none;
 	color: white;
 	line-height: 2.5em;
+	padding: 0 .6em;
 	
 	-moz-box-shadow: 0 2px 4px rgba(0,0,0,.25);
 	-webkit-box-shadow: 0 2px 4px rgba(0,0,0,.25);
@@ -78,8 +83,8 @@ div.newComment {
 dt {
 	float: left;
 	clear: left;
-	text-align: right;
-	width: 10em;
+	text-align: left;
+	width: auto;
 	height: auto;
 	margin: 0;
 	padding-right: .6em;
@@ -97,18 +102,19 @@ dd.inline, dd.StreetAddress {
 }
 dd.staff {
 	text-align: right;
-	margin-top: -1.5em;
 	font-style: italic;
 	float: right;
 }
 dd.comments {
 	clear: both;
+	text-align: left;
 	width: auto;
 	margin: .6em 0 .3em 1em;
 }
 dd {
+	text-align: right;
 	position: relative;
-	margin: 0 0 0 10.5em;
+	margin: 0 0 0 0;
 }
 dd#ResidentialCity, dd#MailingCity {
 	margin: 0 0 0 10.7em;
