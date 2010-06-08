@@ -16,20 +16,21 @@ h1, h2 {
 }
 h1 {
 	font-size: 3em;
-	padding-top: 30px;
+	padding-top: 13px;
 	background-image: url(../images/svsu-logo.jpg);
 	background-repeat: no-repeat;
 	background-position: center left;
+	margin-bottom: 5px;
 }
 h2 {
 	font-size: 2em;
 	padding: 0;
 	margin: 0;
-	line-height: 1.5em;
+	line-height: 1em;
 	text-align: center;
 }
 
-form {margin: 0;}
+form {width 400px; margin: 0 auto;}
 
 input {
 	width: 350px;
@@ -54,9 +55,9 @@ input {
 	outline: none;
 }
 .moved {
-	position: absolute;
-	top: 1.6em;
-	right: 3em;
+	position: relative;
+	top: -49px;
+	left: 300px;
 	margin-bottom: 0 !important;
 }
 

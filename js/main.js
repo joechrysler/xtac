@@ -21,7 +21,8 @@ function displayResults(item) {
 
 	$('#result')
 		.columnize({
-			width: 354,
+			columns: 3,
+				/*width: 354,*/
 			lastNeverTallest: true
 		});
 
