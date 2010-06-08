@@ -2,6 +2,7 @@
 require_once 'php/Person.class.php';
 require_once 'php/DataBase.class.php';
 require_once 'php/LDAP.class.php';
+require_once 'php/print_nice.php';
 
 
 // ----------------
@@ -64,8 +65,7 @@ require_once 'php/LDAP.class.php';
 		->getUser($username, $AuthorizedLDAPFields, $LDAPRecord)
 		->disconnect();
 
-
-
+	
 
 // ----------------------------------------
 //  Import raw data into the Person object

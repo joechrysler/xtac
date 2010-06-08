@@ -7,6 +7,7 @@ class Person
 	protected $categories = array();
 	public $id;
 
+	// Import Data
 	public function importCategories($inArray){
 		foreach ($inArray as $key => $value) {
 			$categoryName = strtolower($value['Category']);
@@ -42,6 +43,9 @@ class Person
 		return $this;
 	}
 
+
+
+	// Drawing Functions
 	public function draw(){
 		$categories = array();
 		$categories[0] = $this->categories['identity'];
