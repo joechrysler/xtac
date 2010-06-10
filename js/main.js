@@ -21,8 +21,7 @@ function displayResults(item) {
 
 	$('#result')
 		.columnize({
-			columns: 3,
-				/*width: 354,*/
+			width: 354,
 			lastNeverTallest: true
 		});
 
@@ -95,7 +94,7 @@ $().ready(function () {
 		modal: true,
 		resizable: false,
 		buttons: {
-			'Reset Password': function() {resetPassword($('input#username').val());$(this).dialog('close');},
+			'Reset Password': function() {resetPassword($('input#username').val());$(this).dialog('close');}
 			}
 		});
 	});

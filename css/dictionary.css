@@ -1,10 +1,4 @@
 #result {
-	/*-moz-column-width: 30em;*/
-	/*-webkit-column-width: 20em;*/
-	/*-moz-column-gap: 0;*/
-	/*-webkit-column-gap: 1em;*/
-	/*column-width: 20em;*/
-	display: none;
 	width: 95%;
 	text-align: center;
 	margin: 0 auto;
@@ -14,25 +8,9 @@ dl {
 	position: relative;
 	line-height: 1.5em;
 	text-align: left;
-	overflow: hidden;
+	overflow: auto;
 	padding: .5em;
 	margin: 1.3em .6em;
-
-	/* Border Radius */
-	border-radius:5px;
-	-webkit-border-radius:5px;
-	-moz-border-radius:5px;
-
-	/* Simple Drop Shadow */
-	-webkit-box-shadow: 1px 1px 7px rgba(153, 153, 153, 0.2);
-	-moz-box-shadow: 1px 1px 5px rgba(153, 153, 153, 0.2);
-	box-shadow: 1px 1px 7px rgba(153, 153, 153, 0.2);
-
-	/* Background */
-	background: #eee;
-	background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#ddd));
-	background: -moz-linear-gradient(top,  #eee,  #ddd);
-	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#eee', endColorstr='#ddd');
 }
 dl#history div.dg {
 	padding: 0 0 1em 0 ;
@@ -40,41 +18,25 @@ dl#history div.dg {
 }
 
 div.dg dd.multi {
-display: inline;
+	display: inline;
 }
 
+
 div.dg {
+	overflow: auto;
 	position: relative;
 	clear: both;
 	height: auto;
 	border-top: 1px dotted #BBB;
 	margin: .2em 0;
-	text-align: left;
+	text-align: right;
 }
 
-div.resetPassword {
-	border-top-style: none;
-}
 
 div.error {
-	border-style: none;
-	color: white;
 	line-height: 2.5em;
 	padding: 0 .6em;
-	
-	-moz-box-shadow: 0 2px 4px rgba(0,0,0,.25);
-	-webkit-box-shadow: 0 2px 4px rgba(0,0,0,.25);
-	box-shadow: 0 2px 4px rgba(0,0,0,.25);
 
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-
-	/* Gradient Background */
-	background-color: #f00;
-	background: -webkit-gradient(linear, left top, left bottom, from(#FF5F50), to(#f00));
-	background: -moz-linear-gradient(top,  #FF5F50,  #f00);
-	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF5F50', endColorstr='#f00');
 }
 div.newComment {
 	display: none;
@@ -82,42 +44,65 @@ div.newComment {
 
 dt {
 	float: left;
-	clear: left;
 	text-align: left;
-	width: auto;
-	height: auto;
-	margin: 0;
-	padding-right: .6em;
 
+	padding-right: 3px;
 	font-weight: bold;
 }
-dt.timestamp {
-	width: 15em;
-	text-align: left;
+
+dd {
+	margin: 0;
+	list-style: none;
 }
 
-dd.inline, dd.StreetAddress {
-	display: inline;
-	margin: 0 0 0 .5em;
-}
-dd.staff {
-	text-align: right;
-	font-style: italic;
-	float: right;
-}
-dd.comments {
-	clear: both;
-	text-align: left;
+
+dd.multi {
+	padding: 0;
 	width: auto;
-	margin: .6em 0 .3em 1em;
+	display: inline;
+	clear: none;
 }
-dd {
-	text-align: right;
-	position: relative;
-	margin: 0 0 0 0;
-}
+
+/*dt {*/
+/*float: left;*/
+/*clear: left;*/
+/*text-align: left;*/
+/*width: auto;*/
+/*height: auto;*/
+/*margin: 0;*/
+/*padding-right: .6em;*/
+
+/*font-weight: bold;*/
+/*}*/
+/*dt.timestamp {*/
+/*width: 15em;*/
+/*text-align: left;*/
+/*}*/
+
+/*dd.inline, dd.StreetAddress {*/
+/*display: inline;*/
+/*margin: 0 0 0 .5em;*/
+/*}*/
+/*dd.staff {*/
+/*text-align: right;*/
+/*font-style: italic;*/
+/*float: right;*/
+/*}*/
+/*dd.comments {*/
+/*clear: both;*/
+/*text-align: left;*/
+/*width: auto;*/
+/*margin: .6em 0 .3em 1em;*/
+/*}*/
+/*dd {*/
+/*text-align: right;*/
+/*position: relative;*/
+/*margin: 0 0 0 0;*/
+/*}*/
 dd#ResidentialCity, dd#MailingCity {
-	margin: 0 0 0 10.7em;
+	display: block;
+	clear: right;
+	/*margin: 0 0 0 10.7em;*/
 }
 
 form#addComments {
