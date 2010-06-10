@@ -1,6 +1,3 @@
-@import "border-radius";
-@import "customMixins";
-
 #result {
 	/*-moz-column-width: 30em;*/
 	/*-webkit-column-width: 20em;*/
@@ -19,12 +16,7 @@ dl {
 	margin: 1.3em .6em;
 
 	@include border-radius(5px);
-
-	/* Simple Drop Shadow */
-	-webkit-box-shadow: 1px 1px 7px rgba(153, 153, 153, 0.2);
-	-moz-box-shadow: 1px 1px 5px rgba(153, 153, 153, 0.2);
-	box-shadow: 1px 1px 7px rgba(153, 153, 153, 0.2);
-
+	@include box-shadow(rgba(153, 153, 153, 0.2), 1px, 1px, 7px);
 	@include bg-gradient(#eee, #ddd);
 }
 dl#history div.dg {
@@ -34,11 +26,11 @@ dl#history div.dg {
 
 
 div.dg {
-	position: relative;
-	clear: both;
-	height: auto;
-	border-top: 1px dotted #bbb;
-	text-align: left;
+  position: relative;
+  clear: both;
+  height: auto;
+  border-top: 1px dotted #bbb;
+  text-align: left;
 
   dd.multi {display: inline;}
 }
@@ -52,12 +44,10 @@ div.error {
 	color: white;
 	line-height: 2.5em;
 	
-	-moz-box-shadow: 0 2px 4px rgba(0,0,0,.25);
-	-webkit-box-shadow: 0 2px 4px rgba(0,0,0,.25);
-	box-shadow: 0 2px 4px rgba(0,0,0,.25);
 
 	@include border-radius(5px);
 	@include bg-gradient(#ff5f50, #f00);
+	@include box-shadow(rgba(0,0,0,.25),0,2px,4px);
 }
 div.newComment {
 	display: none;
@@ -115,4 +105,15 @@ form#addComments {
 #searchField {
 	text-align: center;
 	padding: .2em 0;
+}
+
+li.ac_odd, li.ac_even {
+	background: none;
+	color: #888;
+	width: 90% !important;
+	margin: 0 auto !important;
+	padding: .5em 0;
+	text-align: center;
+	line-height: inherit !important;
+	font-size: inherit !important;
 }

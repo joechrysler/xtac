@@ -11,23 +11,12 @@
 	z-index: 99999;
 
 	background-color: #fff;
-	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ededed));
-	background: -moz-linear-gradient(top,  #fff,  #ededed);
-	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#ededed');
+	@include bg-gradient(#fff, #ededed);
 
 	/* Border Radius */
-	-webkit-border-bottom-left-radius: 5px;
-	-webkit-border-bottom-right-radius: 5px;
-	-moz-border-radius-bottomright: 5px;
-	-moz-border-radius-bottomleft: 5px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-
-
-	/* Gradient Background */
-	-moz-box-shadow: inset 0 1px 3px rgba(0,0,0,.15);
-	/*-webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,.15);*/
-	box-shadow: inset 0 1px 3px rgba(0,0,0,.15);
+	@include border-bottom-left-radius(5px);
+	@include border-bottom-right-radius(5px);
+	@include box-shadow(rgba(0,0,0,.15), 0, 1px, 3px, false, inset);
 }
 
 .ac_results ul {
