@@ -38,3 +38,22 @@ div.error {
 	background: -moz-linear-gradient(top,  #FF5F50,  #f00);
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF5F50', endColorstr='#f00');
 }
+
+input {
+	 background-color: #fff;
+	 border: 1px solid #ccc;
+
+	 -moz-box-shadow: inset 0 1px 3px rgba(0,0,0,.15);
+	 -webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,.15);
+	 box-shadow: inset 0 1px 3px rgba(0,0,0,.15);
+
+	 -webkit-border-radius: 5px;
+	 -moz-border-radius: 5px;
+	 border-radius: 5px;
+
+	 padding-left: .4em;
+	 margin-bottom: 1em;
+
+	 outline: none;
+ }
+
