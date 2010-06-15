@@ -17,12 +17,12 @@ class category{
 		foreach ($this->attributeList as $attribute)
 			$stream .= $attribute->draw($firstItem, $multiItemId);
 		if ($stream !== '') {
-			echo "<dl id=\"$this->HtmlID\">\n";
+			echo "<ul id=\"$this->HtmlID\", class=\"dictionary\">\n";
 			echo "<h2>$this->label</h2>\n";
 			echo $stream;
 
 			// Category footer
-			echo '</dl>',"\n\n";
+			echo '</ul>',"\n\n";
 		}
 	}
 

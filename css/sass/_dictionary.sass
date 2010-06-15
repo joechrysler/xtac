@@ -8,22 +8,23 @@ $radius: 5px
     column-width: 20em;
   display: none
 
-dl
+ul.dictionary, dl
   position: relative
-  line-height: 1.5em
+  line-height: 1.8em
   text-align: left
   overflow: hidden
   padding: 1em
   margin: 1.3em .6em
   +border-radius(5px)
+  +bg-gradient(#efefef, #ddd)
   +box-shadow(rgba(153, 153, 153, 0.2), 1px, 1px, 7px)
-  +bg-gradient(#eeeeee, #dddddd)
   background-color: #eee
 
-dl#history
+ul#history
   div.dg
     padding: 0 0 1em 0
     height: auto
+    
 
 div.dg
   position: relative
@@ -31,8 +32,6 @@ div.dg
   height: auto
   border-top: 1px dotted #bbb
   text-align: right
-  dd.multi
-    display: inline
 
 div.resetPassword
   border-top-style: none
@@ -51,8 +50,14 @@ div.error
   +bg-gradient(#ff5f50, red)
   +box-shadow(rgba(0, 0, 0, 0.25), 0, 2px, 4px)
 
+li
+  display: inline
+  list-style: none
+  position: relative
+  margin: 0
+  padding: 0
 
-dt
+li.head, dt
   float: left
   text-align: left
   height: auto
@@ -62,13 +67,6 @@ dt.timestamp
   width: 15em
   text-align: left
   float: none
-
-dd
-  position: relative
-
-dd.inline, dd.StreetAddress
-  display: inline
-  margin: 0 0 0 .5em
 
 dd.staff
   text-align: right
@@ -80,13 +78,18 @@ div.newComment
   display: none
 
 dd.comments
+  display: block
   text-align: left
   clear: both
-  width: auto
+  width: 100% !important
   margin: .6em 0 .3em 1em
 
-dd#ResidentialCity, dd#MailingCity
+li.first
   display: block
+
+li#FirstName
+  display: inline !important
+
 
 form#addComments
   width: 100%

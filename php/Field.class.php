@@ -36,28 +36,28 @@ class field{
 
 		if ($firstItem) {
 			$buffer .= "\t<div class=\"dg\">"
-				. "\t <dt "
+				. "\t <li "
 				. $this->ID($this->HtmlParentID)
-				. $this->nodeClass()
+				. $this->nodeClass('head')
 				. $this->Title()
 				.  '>'
 				. $this->HtmlName . ':'
-				. "</dt>\n";
+				. "</li>\n";
 
-			$buffer .= "\t\t\t".'<dd '
+			$buffer .= "\t\t\t".'<li '
 				. $this->ID($this->HtmlID)
 				. $this->nodeClass('first')
 				. '>'
 				. $this->Value()
-				. "</dd>\n";
+				. "</li>\n";
 		}
 		else {
-			$buffer .= "\t\t\t".'<dd '
+			$buffer .= "\t\t\t".'<li '
 				. $this->ID($this->HtmlID)
 				. $this->nodeClass()
 				. '>'
 				. $this->Value()
-				. "</dd>\n";
+				. "</li>\n";
 		}
 		if ($this->HtmlID === 'LastName' || $this->HtmlID === 'ResidentialZip' || $this->HtmlID === 'MailingZip')
 			$buffer .= '</div>';
@@ -76,23 +76,23 @@ class field{
 			$buffer .= ' error" title="'
 				.  $this->HtmlTitle;
 		$buffer .= '" ';
-		$buffer .= ">\n\t\t<dt "
+		$buffer .= ">\n\t\t<li "
 			. $this->ID($this->HtmlID)
-			. $this->nodeClass()
+			. $this->nodeClass('head')
 			. '>'
-			. $this->HtmlName . ':' ."</dt>\n"
-			. "\t\t\t<dd>"
+			. $this->HtmlName . ':' ."</li>\n"
+			. "\t\t\t<li>"
 			. $this->Value()
-			. "</dd>\n"
+			. "</li>\n"
 			. '</div>';
 
 		return $buffer;
 	}
 
 	private function nodeClass($inClass = '') {
-		if (sizeof($this->HtmlClass) > 0) {
-			return 'class="' . implode(' ', $this->HtmlClass) . ' ' . $inClass . ' " ';
-		}
+		return (sizeof($this->HtmlClass) > 0)?
+			'class="' . implode(' ', $this->HtmlClass) . ' ' . $inClass . ' " ':
+			"class=\"$inClass\"";
 	}
 	private function Title() {
 		if ($this->HtmlTitle !== null)

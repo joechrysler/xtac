@@ -17,6 +17,7 @@ function displayResults(item) {
 		.html(item)
 		.show();
 
+	$('ul').addClass("dontsplit");
 	$('dl').addClass("dontsplit");
 
 	$('#result')
