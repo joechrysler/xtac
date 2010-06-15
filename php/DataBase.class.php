@@ -73,7 +73,6 @@ class DataBase extends XtacData {
 
 		return $this;
 	}
-
 	public function getRole($inLogin, &$outRole) {
 		$result = Array();
 		$result = $this->query('access_control', "login='$inLogin'");

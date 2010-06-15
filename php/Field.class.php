@@ -102,7 +102,7 @@ class field{
 		return "id=\"$inID\" ";
 	}
 	private function Value() {
-		return ($this->MysqlValue !== null || $this->MysqlValue !== null)?
+		return ($this->MysqlValue !== null)?
 			trim($this->MysqlValue):
 			trim($this->LdapValue);
 	}
@@ -175,6 +175,11 @@ class field{
 			$this->HtmlClass = array();
 			if (strtolower($attribute['HtmlClass']) !== 'null')
 				$this->HtmlClass = explode(" ",$attribute['HtmlClass']);
+
+			if (array_key_exists('MysqlValue', $attribute))
+				$this->MysqlValue = $attribute['MysqlValue'];
+			if (array_key_exists('LdapValue', $attribute))
+				$this->LdapValue = $attribute['LdapValue'];
 
 			return 1;
 		}

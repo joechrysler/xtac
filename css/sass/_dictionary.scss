@@ -1,3 +1,5 @@
+$radius: 5px;
+
 #result {
 	/*-moz-column-width: 30em;*/
 	/*-webkit-column-width: 20em;*/
@@ -18,6 +20,7 @@ dl {
 	@include border-radius(5px);
 	@include box-shadow(rgba(153, 153, 153, 0.2), 1px, 1px, 7px);
 	@include bg-gradient(#eee, #ddd);
+	background-color: #eee;
 }
 dl#history div.dg {
 	padding: 0 0 1em 0 ;
@@ -30,7 +33,7 @@ div.dg {
   clear: both;
   height: auto;
   border-top: 1px dotted #bbb;
-  text-align: left;
+  text-align: right;
 
   dd.multi {display: inline;}
 }
@@ -40,12 +43,18 @@ div.resetPassword {
 }
 
 div.error {
+	position: relative;
+	width: 100%;
+	display: block;
 	border-style: none;
 	color: white;
 	line-height: 2.5em;
+	margin-top: 4px;
+	padding: 0 7px;
 	
 
-	@include border-radius(5px);
+	@include border-top-left-radius($radius);
+	@include border-bottom-left-radius($radius);
 	@include bg-gradient(#ff5f50, #f00);
 	@include box-shadow(rgba(0,0,0,.25),0,2px,4px);
 }
@@ -55,20 +64,21 @@ div.newComment {
 
 dt {
 	float: left;
-	clear: left;
-	text-align: right;
-	width: 10em;
+	text-align: left;
 	height: auto;
-	margin: 0;
-	padding-right: .6em;
 
 	font-weight: bold;
 }
 dt.timestamp {
 	width: 15em;
 	text-align: left;
+	float: none;
 }
 
+dd {
+	position: relative;
+	margin: 0 0 0 10.5em;
+}
 dd.inline, dd.StreetAddress {
 	display: inline;
 	margin: 0 0 0 .5em;
@@ -80,13 +90,10 @@ dd.staff {
 	float: right;
 }
 dd.comments {
+	text-align: left;
 	clear: both;
 	width: auto;
 	margin: .6em 0 .3em 1em;
-}
-dd {
-	position: relative;
-	margin: 0 0 0 10.5em;
 }
 dd#ResidentialCity, dd#MailingCity {
 	margin: 0 0 0 10.7em;

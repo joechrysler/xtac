@@ -17,6 +17,7 @@ class Person
 			$this->categories[$categoryName]->attributeList[$value['HtmlID']] = new field($value);
 		}
 
+
 		return $this;
 	}
 	public function importLdapData($inArray){
@@ -24,10 +25,14 @@ class Person
 			if ($value )
 				foreach ($value as $subkey => $subvalue)
 					foreach ($subvalue as $subsubvalue)
-					if ($subsubvalue->LdapName !== NULL AND $subsubvalue->LdapName !== 'NULL')
-						$subsubvalue->LdapValue = array_key_exists($subsubvalue->LdapName, $inArray)?
-							$inArray[$subsubvalue->LdapName]:
-							null;
+					if ($subsubvalue->LdapName !== NULL AND $subsubvalue->LdapName !== 'NULL') {
+						if ($subsubvalue->LdapName === 'logindisabled' && $subsubvalue->LdapValue === null)
+							$subsubvalue->LdapValue = 'N';
+						else
+							$subsubvalue->LdapValue = array_key_exists($subsubvalue->LdapName, $inArray)?
+								$inArray[$subsubvalue->LdapName]:
+								null;
+					}
 
 		return $this;
 	}
@@ -35,10 +40,14 @@ class Person
 		foreach ($this->categories as $key => $value) 
 			//TODO Cleanup for loops
 			if ($value)
-				foreach ($value as $subkey => $subvalue)
-					foreach ($subvalue as $subsubvalue)
-					if ($subsubvalue->MysqlName !== NULL AND $subsubvalue->MysqlName !== 'NULL' AND array_key_exists($subsubvalue->MysqlName, $inArray))
-						$subsubvalue->MysqlValue = $inArray[$subsubvalue->MysqlName];
+				foreach ($value as $subkey => $Category)
+					foreach ($Category as $Attribute)
+						if (
+							$Attribute->MysqlName !== NULL &&
+							$Attribute->MysqlName !== 'NULL' &&
+							array_key_exists($Attribute->MysqlName, $inArray)
+						)
+						$Attribute->MysqlValue = $inArray[$Attribute->MysqlName];
 
 		return $this;
 	}
