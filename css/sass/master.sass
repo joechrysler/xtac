@@ -1,0 +1,59 @@
+// Mixins
+@import compass/css3/gradient
+@import compass/css3/border-radius
+@import compass/css3/box-shadow
+@import customMixins
+
+@import dictionary
+@import forms
+@import graphics
+@import autocomplete
+
+//@import "border-radius";
+//@import "compass/reset";
+@import jquery-ui
+
+html,body
+  margin: 0
+  padding: 0
+  font-size: 12px
+
+/* Boilerplate styles to take care of various old-inconsistent browser display models
+
+html
+  background: white url(../images/body.png) repeat top left
+
+body
+  background: transparent url(../images/header.png) no-repeat top center
+  font-family: 'Lucida Grande', Lucida, Verdana, sans-serif
+  text-align: center
+  margin: 0 auto
+
+h1, h2
+  font: normal normal 600 48px 'Myriad Pro Semibold', 'Myriad Pro', MyriadPro, Myriad, sans-serif
+  color: #34425F
+
+h1
+  color: #fefefe
+  font-size: 3em
+  padding-top: 30px
+  //background: transparent url(../images/svsu-logo.jpg) no-repeat center left;
+
+h2
+  font-size: 2em
+  padding: 0
+  margin: 0
+  line-height: 1.5em
+  text-align: center
+
+form
+  margin: 0
+
+#comments
+  display: none
+
+#debug
+  clear: both
+  text-align: left
+  width: 50%
+  margin: 0 auto

@@ -1,0 +1,111 @@
+$radius: 5px
+
+#result
+  //-moz-column-width: 30em;
+    -webkit-column-width: 20em;
+    -moz-column-gap: 0;
+    -webkit-column-gap: 1em;
+    column-width: 20em;
+  display: none
+
+dl
+  position: relative
+  line-height: 1.5em
+  text-align: left
+  overflow: hidden
+  padding: 1em
+  margin: 1.3em .6em
+  +border-radius(5px)
+  +box-shadow(rgba(153, 153, 153, 0.2), 1px, 1px, 7px)
+  +bg-gradient(#eeeeee, #dddddd)
+  background-color: #eee
+
+dl#history
+  div.dg
+    padding: 0 0 1em 0
+    height: auto
+
+div.dg
+  position: relative
+  clear: both
+  height: auto
+  border-top: 1px dotted #bbb
+  text-align: right
+  dd.multi
+    display: inline
+
+div.resetPassword
+  border-top-style: none
+
+div.error
+  position: relative
+  width: 100%
+  display: block
+  border-style: none
+  color: white
+  line-height: 2.5em
+  margin-top: 4px
+  padding: 0 7px
+  +border-top-left-radius($radius)
+  +border-bottom-left-radius($radius)
+  +bg-gradient(#ff5f50, red)
+  +box-shadow(rgba(0, 0, 0, 0.25), 0, 2px, 4px)
+
+
+dt
+  float: left
+  text-align: left
+  height: auto
+  font-weight: bold
+
+dt.timestamp
+  width: 15em
+  text-align: left
+  float: none
+
+dd
+  position: relative
+
+dd.inline, dd.StreetAddress
+  display: inline
+  margin: 0 0 0 .5em
+
+dd.staff
+  text-align: right
+  margin-top: -1.5em
+  font-style: italic
+  float: right
+
+div.newComment
+  display: none
+
+dd.comments
+  text-align: left
+  clear: both
+  width: auto
+  margin: .6em 0 .3em 1em
+
+dd#ResidentialCity, dd#MailingCity
+  display: block
+
+form#addComments
+  width: 100%
+
+#newComments
+  width: 100%
+  margin: auto auto
+  font-size: 1.3em
+
+#searchField
+  text-align: center
+  padding: .2em 0
+
+li.ac_odd, li.ac_even
+  background: none
+  color: #888
+  width: 90% !important
+  margin: 0 auto !important
+  padding: .5em 0
+  text-align: center
+  line-height: inherit !important
+  font-size: inherit !important
