@@ -3,6 +3,7 @@ require_once 'php/Person.class.php';
 require_once 'php/DataBase.class.php';
 require_once 'php/LDAP.class.php';
 require_once 'php/print_nice.php';
+require_once 'config.php';
 
 
 // ----------------
@@ -87,7 +88,7 @@ require_once 'php/print_nice.php';
 	if ($AuthorizationLevel === 'library')
 		$Person->DisplayMSSoftwareEligibility($EligibleForSoftwareCheckout);
 	else
-		$Person->drawHistory($SupportHistory);
+		$Person->drawHistory($SupportHistory, $HistoryItemsShown);
 	if ($PasswordResetAllowed == true)
 		$Person->drawPasswordReset($username);
 

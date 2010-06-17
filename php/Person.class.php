@@ -72,20 +72,41 @@ class Person
 
 		return $this;
 	}
-	public function drawHistory($inArray){
-		echo '<dl id="history">', "\n\t",
-			'<h2>history</h2>', "\n\t";
+	public function drawHistory($inArray, $HistoryItemsShown = 0){
+		echo '<dl id="history">', "\n\t";
+		echo (count($inArray) > $HistoryItemsShown)?
+			'<h2 class="moreAvailable">':
+			'<h2>';
+		echo	'history</h2>', "\n\t",
+			'<div class="scrollable">';
+		$HistoryTail = array_slice($inArray, 0 - $HistoryItemsShown);
+		if (is_array($HistoryTail))
+			foreach ($HistoryTail as $record)
+				$this->drawHistoryItem($record);
 
-		if (is_array($inArray))
-			foreach ($inArray as $record)
-				echo '<div class="dg">', "\n\t\t",
-					'<dt class="timestamp">',@date("F j, Y - g:i a", @strtotime($record['TimeStamp'])),'</dt>', "\n\t\t\t",
-					'<dd class="staff">',$record['StaffMember'],'</dd>',"\n\t\t\t",
-					'<dd class="comments">',$record['Comments'],'</dd>',"\n\t\t",
-					'</div>';
+		echo '</div>';
 
 		require_once 'forms/historyForm.html';
 		echo '</dl>';
+
+		return $this;
+	}
+
+	public function drawHistoryItems($inArray, $HistoryItemsShown){
+		$History = array_slice($inArray, 0, count($inArray) - $HistoryItemsShown);
+		if (is_array($History))
+			foreach ($History as $record)
+				$this->drawHistoryItem($record, 'newItem');
+
+		return $this;
+	}
+
+	private function drawHistoryItem($inRecord, $addClass = ''){
+		echo '<div class="dg ',$addClass,'">', "\n\t\t",
+			'<dt class="timestamp">',@date("F j, Y - g:i a", @strtotime($inRecord['TimeStamp'])),'</dt>', "\n\t\t\t",
+			'<dd class="staff">',$inRecord['StaffMember'],'</dd>',"\n\t\t\t",
+			'<dd class="comments">',$inRecord['Comments'],'</dd>',"\n\t\t",
+			'</div>';
 
 		return $this;
 	}

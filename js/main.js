@@ -2,6 +2,26 @@ function format(person) {
 	return person.NickName + " " + person.LastName + " : " + $.trim(person.PersonID);
 }
 
+function getAllHistory(inID) {
+	var retrievalURL = 'getHistory.php?id=' + $.trim(inID);
+	var history = $('#history');
+	var scroller = history.children('div.scrollable');
+	$.get(retrievalURL, function (data) {
+		
+		scroller.css('max-height', scroller.css('height'));
+		scroller.prepend(data)
+		scroller.children('.newItem').slideDown('slow');
+		scroller.css('overflow', 'auto');
+
+
+		history.children('h2:first').unbind('click');
+		history.children('h2:first').removeClass('moreAvailable');
+			
+	});
+
+	return false;
+}
+
 function addToHistory(inID, inComment) {
 	var commentURL = 'addComment.php?id=' + $.trim(inID) + '&comment=' + $.trim(inComment);
 	$.get(commentURL, function (data) {
@@ -17,14 +37,15 @@ function displayResults(item) {
 		.html(item)
 		.show();
 
-	$('ul').addClass("dontsplit");
-	$('dl').addClass("dontsplit");
+	$('ul').addClass('dontsplit');
+	$('dl').addClass('dontsplit');
 
 	$('#result')
 		.columnize({
 			width: 354,
 			lastNeverTallest: true
 		});
+
 
 
 	$('#addComments')
@@ -44,6 +65,9 @@ function displayResults(item) {
 		.mousedown(function () {$(this).addClass('active');})
 		.mouseup(function () {$(this).removeClass('active');})
 		.mouseleave(function () {$(this).removeClass('active');});
+
+	$('#history').children('h2:first').unbind('click');
+	$('#history').children('h2:first').click(function () {getAllHistory($('#PersonID').next().html())});
 }
 
 function getPerson(person) {

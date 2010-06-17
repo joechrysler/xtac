@@ -20,10 +20,23 @@ ul.dictionary, dl
   +box-shadow(rgba(153, 153, 153, 0.2), 1px, 1px, 7px)
   background-color: #eee
 
-ul#history
-  div.dg
-    padding: 0 0 1em 0
-    height: auto
+dl#history
+  h2.moreAvailable
+    background:
+      image: url(../images/downtriangle.png)
+      position: 80% 50%
+      repeat: no-repeat
+  div.scrollable
+    position: relative
+    overflow: hidden
+    max-height: 29em
+    div.dg
+      padding: 0 0 1em 0
+      margin: 0 auto
+      width: 90% 
+      height: auto
+    .newItem
+      display: none
     
 
 div.dg

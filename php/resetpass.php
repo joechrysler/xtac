@@ -7,8 +7,8 @@
 // the password assigned to the user - it is random.  This script will also reset the grace login count
 // for the given user.
 
-include "../config.php";
-include "/srv/www/live/webapps/include/sanitize.php";
+require_once '../config.php';
+require_once '/srv/www/live/webapps/include/sanitize.php';
 
 //$usercn = 'teststu';
 $usercn = sanitize_ldap_string($_POST['usercn']);
