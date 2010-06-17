@@ -1,5 +1,6 @@
 <?php
 require_once 'XtacData.class.php';
+require_once 'print_nice.php';
 
 class LDAP extends XtacData {
 	// ## Class-variables ######################################
@@ -36,15 +37,18 @@ class LDAP extends XtacData {
 		$ldapResults = null;
 
 		$ldapResults = $this->search('o=svsu', "(cn=$inUsername)", $inCol);
-		foreach ($ldapResults[0] as $key => $value)
-			if (!is_numeric($key)) {
-				$ldapArray[$key] = is_array($value)?
-					$value[0]:
-					$value;
-				$ldapArray[$key] = parent::translateValue($ldapArray[$key]);
-			}
 
-		$outUser = $ldapArray;
+		if ($ldapResults !== null && array_key_exists(0, $ldapResults)){
+			foreach ($ldapResults[0] as $key => $value)
+				if (!is_numeric($key)) {
+					$ldapArray[$key] = is_array($value)?
+						$value[0]:
+						$value;
+					$ldapArray[$key] = parent::translateValue($ldapArray[$key]);
+				}
+
+			$outUser = $ldapArray;
+		}
 
 		return $this;
 	}

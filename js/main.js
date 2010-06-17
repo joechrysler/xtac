@@ -1,5 +1,5 @@
 function format(person) {
-	return person.NickName + " " + person.LastName + " : " + $.trim(person.PersonID);
+	return "<span class=\"autoLogin\">" + person.Login + " | </span>" + person.NickName + " " + person.LastName + " : " + $.trim(person.PersonID);
 }
 
 function getAllHistory(inID) {
@@ -14,6 +14,7 @@ function getAllHistory(inID) {
 		scroller.css('overflow', 'auto');
 
 
+		scroller.animate({ scrollTop: 0}, 1000);
 		history.children('h2:first').unbind('click');
 		history.children('h2:first').removeClass('moreAvailable');
 			
@@ -24,10 +25,15 @@ function getAllHistory(inID) {
 
 function addToHistory(inID, inComment) {
 	var commentURL = 'addComment.php?id=' + $.trim(inID) + '&comment=' + $.trim(inComment);
+	var history = $('#history');
+	var scroller = history.children('div.scrollable');
 	$.get(commentURL, function (data) {
-		$('#addComments').before(data);
-		$('.newComment').show('fast');
+		scroller.css('max-height', scroller.css('height'));
+		scroller.css('overflow', 'auto');
+		scroller.append(data);
+		$('.newComment').show();
 		$('#newComments').val('');
+		scroller.animate({ scrollTop: scroller.attr("scrollHeight")}, 1000);
 	});
 }
 

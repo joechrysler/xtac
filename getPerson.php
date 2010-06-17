@@ -87,9 +87,9 @@ require_once 'config.php';
 	
 	if ($AuthorizationLevel === 'library')
 		$Person->DisplayMSSoftwareEligibility($EligibleForSoftwareCheckout);
-	else
+	elseif ($Person->isFullUser())
 		$Person->drawHistory($SupportHistory, $HistoryItemsShown);
-	if ($PasswordResetAllowed == true)
+	if ($PasswordResetAllowed == true && $Person->isFullUser())
 		$Person->drawPasswordReset($username);
 
 ?>

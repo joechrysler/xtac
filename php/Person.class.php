@@ -77,14 +77,17 @@ class Person
 		echo (count($inArray) > $HistoryItemsShown)?
 			'<h2 class="moreAvailable">':
 			'<h2>';
-		echo	'history</h2>', "\n\t",
-			'<div class="scrollable">';
-		$HistoryTail = array_slice($inArray, 0 - $HistoryItemsShown);
-		if (is_array($HistoryTail))
-			foreach ($HistoryTail as $record)
-				$this->drawHistoryItem($record);
+		echo	'history</h2>', "\n\t";
 
-		echo '</div>';
+		if (is_array($inArray)){
+			echo '<div class="scrollable">';
+			$HistoryTail = array_slice($inArray, 0 - $HistoryItemsShown);
+			if (is_array($HistoryTail))
+				foreach ($HistoryTail as $record)
+					$this->drawHistoryItem($record);
+
+			echo '</div>';
+		}
 
 		require_once 'forms/historyForm.html';
 		echo '</dl>';
@@ -151,9 +154,16 @@ class Person
 	public function locked(){
 		return true;
 	}
-	public function setID($inID) {
+	public function setID($inID){
 		$this->id = $inID;
 
 		return $this;
+	}
+	public function isFullUser(){
+		if (array_key_exists('Username',$this->categories['identity']->attributeList))
+			return ($this->categories['identity']->attributeList['Username']->LdapValue === null)?
+				false:
+				true;
+
 	}
 }

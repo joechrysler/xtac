@@ -34,8 +34,10 @@ class DataBase extends XtacData {
 		$tempArray = array();
 
 		$tempArray = $this->query('xtac', "PersonID like '%$inID'", '', $inCol);
+		$tempArray2 = $this->query('users2keep', "PersonID like '%$inID'");
+		$tempArray3 = array_merge($tempArray, $tempArray2);
 
-		foreach ($tempArray[0] as $key => $value)
+		foreach ($tempArray3[0] as $key => $value)
 			$outUser[$key] = parent::translateValue($value);
 
 		return $this;
@@ -192,7 +194,10 @@ class DataBase extends XtacData {
 		$SortOrder = 'LastName, NickName';
 		$SelectedColumns = 'LastName, NickName, PersonID, Login';
 
-		$outResults = $this->query('xtac', $Filter, $SortOrder, $SelectedColumns);
+		$xtacResults = $this->query('xtac', $Filter, $SortOrder, $SelectedColumns);
+		$users2KeepResults = $this->query('users2keep', "Login like '$inCriteria%' or PersonID like '%$inCriteria%'", 'Login, PersonID', 'PersonID,Login');
+
+		$outResults = array_merge($xtacResults, $users2KeepResults);
 
 		return $this;
 	}
