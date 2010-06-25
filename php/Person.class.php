@@ -21,10 +21,10 @@ class Person
 		return $this;
 	}
 	public function importLdapData($inArray){
-		foreach ($this->categories as $key => $value)
-			if ($value )
-				foreach ($value as $subkey => $subvalue)
-					foreach ($subvalue as $subsubvalue)
+		foreach ($this->categories as $Category => $AttributeList)
+			if ($AttributeList)
+				foreach ($AttributeList as $FieldName => $FieldObject)
+					foreach ($FieldObject as $FieldAttribute)
 					if ($subsubvalue->LdapName !== NULL AND $subsubvalue->LdapName !== 'NULL') {
 						if ($subsubvalue->LdapName === 'logindisabled' && $subsubvalue->LdapValue === null)
 							$subsubvalue->LdapValue = 'N';
@@ -165,5 +165,13 @@ class Person
 				false:
 				true;
 
+	}
+
+// *************** Testing Methods*******************
+	public function printLdapData($inArray){
+		print_nice($this->categories);
+		echo '<br /><br />';
+		print_nice($inArray);
+		return $this;
 	}
 }
