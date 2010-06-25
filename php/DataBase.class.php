@@ -129,13 +129,14 @@ class DataBase extends XtacData {
 	public function getUsername($inID, &$outUsername) {
 		$result = Array();
 
-		$result = $this->query('xtac', "PersonID like '%$inID'", '', 'Login');
+		$xtacResult = $this->query('xtac', "PersonID like '%$inID'", '', 'Login');
+		$u2kResult  = $this->query('users2keep', "PersonID like '%$inID'", '', 'Login');
+		$result = array_merge($xtacResult, $u2kResult);
 
 		//## Fail silently if no-one has that userID
-		if (!@$result[0])
-			$outUsername = false;
-		else
-			$outUsername = $result[0]['Login'];
+		$outUsername = (!@$result[0])?
+			false:
+			$result[0]['Login'];
 
 		return $this;
 	}

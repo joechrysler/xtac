@@ -5,7 +5,6 @@ require_once 'php/LDAP.class.php';
 require_once 'php/print_nice.php';
 require_once 'config.php';
 
-date_default_timezone_set('America/New_York');
 
 // ----------------
 //  Transient Data
@@ -76,7 +75,8 @@ date_default_timezone_set('America/New_York');
 	$Person
 		->importCategories($PersonalAttributes)
 		->importLdapData($LDAPRecord)
-		->importMysqlData($MySQLRecord);
+		->importMysqlData($MySQLRecord)
+		->printLdapData($LDAPRecord);
 
 
 

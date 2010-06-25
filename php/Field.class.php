@@ -129,7 +129,7 @@ class field{
 		else return true;
 	}
 	private function ApplyRules(){
-		if ($this->LdapName === 'logindisabled' && $this->LdapValue === 'T') {
+		if ($this->LdapName === 'logindisabled' && $this->LdapValue === 'Y') {
 			$this->HtmlClass[] = 'error';
 			$this->HtmlTitle = 'Account Disabled!';
 		}

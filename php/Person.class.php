@@ -1,6 +1,7 @@
 <?php
 require_once 'config.php';
 require_once 'Category.class.php';
+require_once 'print_nice.php';
 
 class Person
 {
@@ -25,12 +26,12 @@ class Person
 			if ($AttributeList)
 				foreach ($AttributeList as $FieldName => $FieldObject)
 					foreach ($FieldObject as $FieldAttribute)
-					if ($subsubvalue->LdapName !== NULL AND $subsubvalue->LdapName !== 'NULL') {
-						if ($subsubvalue->LdapName === 'logindisabled' && $subsubvalue->LdapValue === null)
-							$subsubvalue->LdapValue = 'N';
+					if ($FieldAttribute->LdapName !== NULL && $FieldAttribute->LdapName !== 'NULL') {
+						if ($FieldAttribute->LdapName === 'logindisabled' && @$inArray[$FieldAttribute->LdapName] === null)
+							$FieldAttribute->LdapValue = 'N';
 						else
-							$subsubvalue->LdapValue = array_key_exists($subsubvalue->LdapName, $inArray)?
-								$inArray[$subsubvalue->LdapName]:
+							$FieldAttribute->LdapValue = array_key_exists($FieldAttribute->LdapName, $inArray)?
+								$inArray[$FieldAttribute->LdapName]:
 								null;
 					}
 
@@ -169,8 +170,6 @@ class Person
 
 // *************** Testing Methods*******************
 	public function printLdapData($inArray){
-		print_nice($this->categories);
-		echo '<br /><br />';
 		print_nice($inArray);
 		return $this;
 	}

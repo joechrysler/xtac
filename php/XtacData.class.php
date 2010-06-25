@@ -30,25 +30,41 @@ abstract class XtacData {
 	abstract public function getUser($inID, $inCol, &$outUser);
 
 	protected function translateValue($inValue) {
-		switch ($inValue) {
-			case '':
-				return null;
-				break;
-			case 'TRUE':
-				return 'Y';
-				break;
-			case 'FALSE':
-				return 'N';
-				break;
-			case 'OFF':
-				return 'N';
-				break;
-			case 'ON':
-				return 'Y';
-				break;
-			default:
-				return $inValue;
+		if (strlen($inValue) !== 0 && $inValue[strlen($inValue) - 1] === 'Z' && is_numeric($inValue[0])){
+			$time = mktime(
+				/* Hours */	0,
+				/* Minutes */	0,
+				/* Seconds */	0,
+				/* Month */	substr($inValue, 4,2),
+				/* Day */		substr($inValue, 6,2),
+				/* Year */	substr($inValue, 0,4)
+			);
+
+			return date('F j, Y', $time);
 		}
+
+		else {
+			switch ($inValue) {
+				case '':
+					return null;
+					break;
+				case 'TRUE':
+					return 'Y';
+					break;
+				case 'FALSE':
+					return 'N';
+					break;
+				case 'OFF':
+					return 'N';
+					break;
+				case 'ON':
+					return 'Y';
+					break;
+				default:
+					return $inValue;
+			}
+		}
+
 	}
 
 }
