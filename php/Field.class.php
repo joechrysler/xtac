@@ -15,7 +15,7 @@ class field{
 	public function draw(&$firstItem = false, &$multiItemId = '') {
 		$buffer = '';
 		$this->ConsistencyCheck();
-		$this->SpecialRules();
+		$this->ApplyRules();
 
 		if (!$this->IsEmpty())
 			$buffer = ($this->MultiValue())?
@@ -128,7 +128,7 @@ class field{
 		}
 		else return true;
 	}
-	private function SpecialRules(){
+	private function ApplyRules(){
 		if ($this->LdapName === 'logindisabled' && $this->LdapValue === 'T') {
 			$this->HtmlClass[] = 'error';
 			$this->HtmlTitle = 'Account Disabled!';
