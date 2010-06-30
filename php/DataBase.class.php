@@ -15,18 +15,23 @@ class DataBase extends XtacData {
 
 	//## Connection Management #################################
 	public function connect($inUsername, $inPassword) {
-		$mysqlHandler = new mysqli($this->host, $inUsername, $inPassword, $this->database);
+		// Use an already active connection if one exists
+		$newMysqlHandler = $this->hasConnection?
+			$this->connection:
+			new mysqli($this->host, $inUsername, $inPassword, $this->database);
 
 		$this->hasConnection = true;
-		$this->connection = $mysqlHandler;
+		$this->connection = $newMysqlHandler;
 
 		return $this;
 	}
 	public function disconnect() {
 		$this->connection->close();
+		$this->hasConnection = false;
 
 		return $this;
 	}
+
 
 
 	//## Parent Methods ########################################
@@ -42,6 +47,7 @@ class DataBase extends XtacData {
 
 		return $this;
 	}
+
 
 
 	//## Distinct methods ######################################
@@ -204,6 +210,7 @@ class DataBase extends XtacData {
 	}
 
 
+
 	//## Generic Query ###################################################
 	private function query($inTable, $inFilter = '', $inOrder = '', $inCol = '*'){
 
@@ -261,5 +268,28 @@ class DataBase extends XtacData {
 			return $this->connection->query($queryString);
 		}
 	}
+
+	//## Testing Suite ###################################################
+	public function connected(){
+		echo 'hasConnection says ', $this->hasConnection;
+		echo '<br />';
+		echo 'connection says ', print_r($this->connection);
+		echo '<br />';
+		echo '<br />';
+
+		return $this;
+	}
+	public function role() {
+		$temprole = '';
+		$this->getRole($_SERVER['PHP_AUTH_USER'], $temprole);
+		echo '<h1>Role: ',$temprole,'</h1>';
+		echo '<br />';
+		echo '<br />';
+		
+		return $this;
+		
+	}
+
+	
 }
 ?>

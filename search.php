@@ -8,16 +8,20 @@ $role = '';
 $results = array();
 
 // Check for missing parameters
-if (!@$_GET['q']){
+
+if (!@$_GET['term']){
 	echo 'this must be called with a get variable \'q\'';
 	return;
 }
 
 $MySQLDatabase
 	->connect($db_user, $db_pass)
+	->connected()
+	->role()
 	->getRole($_SERVER['PHP_AUTH_USER'], $role)
-	->searchUsers($_GET['q'], $results)
-	->disconnect();
+	->searchUsers($_GET['term'], $results)
+	->disconnect()
+	->connected();
 
 //echo json_encode($results),'<br/><br/>';
 // Replacement for json_encode.  Remove after netserv upgrades to php 5.3

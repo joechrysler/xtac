@@ -76,8 +76,8 @@ function displayResults(item) {
 	$('#history').children('h2:first').click(function () {getAllHistory($('#PersonID').next().html())});
 }
 
-function getPerson(person) {
-	var resultsURL = 'getPerson.php?id=' + $.trim(person.PersonID);
+function getPerson(id) {
+	var resultsURL = 'getPerson.php?id=' + $.trim(id);
 	$.get(resultsURL, function (data) {
 		displayResults(data);
 	});
@@ -93,31 +93,48 @@ function resetPassword(inUsername) {
 	});
 }
 
-$().ready(function () {
-	$("#searchField")
-		.autocomplete('search.php', {
-			dataType: "json",
-			width: 200,
-			parse: function (data) {
-				return $.map(data, function (row) {
-					return {
-						data: row,
-						value: row.NickName,
-						/*result: row.NickName + " " + row.LastName + " : " + $.trim(row.PersonID)*/
-						result: ''
-						}
-					});
-				},
+function filterNamelessAccounts(inPerson) {
+	return inPerson.NickName !== undefined && inPerson.LastName !== undefined ?
+		inPerson.NickName + ' ' + inPerson.LastName:
+		inPerson.Login;
+}
 
-			formatItem: function (item) {
-				return format(item);
+	$.widget("custom.personComplete", $.ui.autocomplete, {
+		_renderMenu: function( ul, items ) {
+			var self = this,
+				currentResultNumber = 0;
+			$.each( items, function( index, item ) {
+				currentResultNumber += 1;
+				if ( currentResultNumber <= 10 ) {
+					self._renderItem( ul, item );
 				}
-			})
-		.result(function (e, item) {
-			$(this).addClass('moved');
-			getPerson(item);
-			})
-		.focus();
+			});
+		}
+	});
+
+$().ready(function () {
+	$('#searchField').change(function () {$('#searchField').addClass('active');});
+	$("#searchField").personComplete({
+		/*source: projects,*/
+			source: 'search.php',
+			minLength: 2,
+			focus: function(event, ui) {
+				$('#searchField').val(filterNamelessAccounts(ui.item));
+				return false;
+			},		
+			select: function (event, ui) {
+				getPerson(ui.item.PersonID);
+			}
+	})
+	.focus()
+	.data( "personComplete" )._renderItem = function( ul, item ) {
+			return $( "<li></li>" )
+				.data( "item.autocomplete", item )
+				.append( '<a><span class="autoLogin">' + item.Login + '</span>'
+					+ filterNamelessAccounts(item) + ' '
+					+ '<span class="autoID">' + item.PersonID + '</span></a>')
+				.appendTo( ul );
+	};
 
 	$('#dialog').dialog({
 		autoOpen: false,
