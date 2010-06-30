@@ -16,7 +16,8 @@ if (!@$_GET['q']){
 $MySQLDatabase
 	->connect($db_user, $db_pass)
 	->getRole($_SERVER['PHP_AUTH_USER'], $role)
-	->searchUsers($_GET['q'], $results);
+	->searchUsers($_GET['q'], $results)
+	->disconnect();
 
 //echo json_encode($results),'<br/><br/>';
 // Replacement for json_encode.  Remove after netserv upgrades to php 5.3
