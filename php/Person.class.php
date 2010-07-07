@@ -81,7 +81,7 @@ class Person
 		echo	'history</h2>', "\n\t";
 
 		if (is_array($inArray)){
-			echo '<div class="scrollable">';
+			echo '<div id="scrollable">';
 			$HistoryTail = array_slice($inArray, 0 - $HistoryItemsShown);
 			if (is_array($HistoryTail))
 				foreach ($HistoryTail as $record)
