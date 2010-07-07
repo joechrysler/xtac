@@ -17,14 +17,20 @@ html,body
   margin: 0
   padding: 0
   font-size: 12px
+  background-color: transparent
 
 /* Boilerplate styles to take care of various old-inconsistent browser display models
 
 html
-  background: white url(../images/body.png) repeat top left
+  background:
+    color: white
+    image: url(../images/body.png)
 
 body
-  background: transparent url(../images/header.png) no-repeat top center
+  background:
+    image: url(../images/header.png)
+    repeat: no-repeat
+    position: top center
   height: auto
   min-height: 450px
   font-family: 'Lucida Grande', Lucida, Verdana, sans-serif

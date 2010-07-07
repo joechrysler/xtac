@@ -92,49 +92,46 @@ function resetPassword(inUsername) {
 			.before(data);
 	});
 }
-
-function filterNamelessAccounts(inPerson) {
-	return inPerson.NickName !== undefined && inPerson.LastName !== undefined ?
-		inPerson.NickName + ' ' + inPerson.LastName:
-		inPerson.Login;
-}
-
-	$.widget("custom.personComplete", $.ui.autocomplete, {
-		_renderMenu: function( ul, items ) {
-			var self = this,
-				currentResultNumber = 0;
-			$.each( items, function( index, item ) {
-				currentResultNumber += 1;
-				if ( currentResultNumber <= 10 ) {
-					self._renderItem( ul, item );
-				}
-			});
-		}
-	});
-
+var projects = [
+			{
+				value: 'jquery',
+				label: 'jQuery',
+				desc: 'the write less, do more, JavaScript library',
+				icon: 'jquery_32x32.png'
+			},
+			{
+				value: 'jquery-ui',
+				label: 'jQuery UI',
+				desc: 'the official user interface library for jQuery',
+				icon: 'jqueryui_32x32.png'
+			},
+			{
+				value: 'sizzlejs',
+				label: 'Sizzle JS',
+				desc: 'a pure-JavaScript CSS selector engine',
+				icon: 'sizzlejs_32x32.png'
+			}
+		];
 $().ready(function () {
-	$('#searchField').change(function () {$('#searchField').addClass('active');});
-	$("#searchField").personComplete({
+	$("#searchField").autocomplete({
 		/*source: projects,*/
-		source: 'search.php',
-		minLength: 2,
-		focus: function(event, ui) {
-			$('#searchField').val(filterNamelessAccounts(ui.item));
-			return false;
-		},		
-		select: function (event, ui) {
-			getPerson(ui.item.PersonID);
-		}
+			source: 'search.php',
+			minLength: 2,
+			focus: function(event, ui) {
+				$('#searchField').val(ui.item.NickName + ' ' + ui.item.LastName);
+				return false;
+			},		
+			select: function (event, ui) {
+				getPerson(ui.item.PersonID);
+			}
 	})
-	.focus()
-	.data("personComplete")._renderItem = function( ul, item ) {
-		return $("<li></li>")
-			.data("item.autocomplete", item)
-			.append('<a><span class="autoLogin">' + item.Login + '</span>'
-				+ filterNamelessAccounts(item) + ' '
-				+ '<span class="autoID">' + item.PersonID + '</span></a>')
-			.appendTo(ul);
+	.data( "autocomplete" )._renderItem = function( ul, item ) {
+			return $( "<li></li>" )
+				.data( "item.autocomplete", item )
+				.append( '<a>' + item.PersonID + "<br>" + item.NickName + " " + item.LastName + '</a>')
+				.appendTo( ul );
 	};
+	/*.focus();*/
 
 	$('#dialog').dialog({
 		autoOpen: false,
