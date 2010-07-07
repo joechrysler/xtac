@@ -110,17 +110,20 @@ class field{
 
 	//## Backend Processing ###########################################
 	private function ConsistencyCheck(){
-		if ($this->MysqlValue === null && $this->LdapValue === null)
+		if ($this->MysqlValue === null)
 			return true;
-		if ($this->MysqlValue === null && $this->LdapValue !== null)
-			return true;
-		if ($this->MysqlValue !== null && $this->LdapValue === null)
+		elseif ($this->LdapValue === null)
 			return true;
 
 		if ($this->MysqlValue !== null || $this->LdapValue !== null) {
 			if (trim($this->LdapValue) === trim($this->MysqlValue))
 				return true;
 			else {
+				// Certain bit-for-bit inconsistencies in mysql and ldap are allowable.
+				// We first need to check to see if this is one of those allowable inconsistencies.
+				// See definition of allowableInconsistency() for more information.
+				if ($this->allowableInconsistency())
+					return true;
 				$this->HtmlClass[] = 'error';
 				$this->HtmlTitle  = 'Ldap: ' . $this->LdapValue . '   Mysql: ' . $this->MysqlValue;
 				return false;
@@ -129,9 +132,17 @@ class field{
 		else return true;
 	}
 	private function ApplyRules(){
-		if ($this->LdapName === 'logindisabled' && $this->LdapValue === 'Y') {
-			$this->HtmlClass[] = 'error';
-			$this->HtmlTitle = 'Account Disabled!';
+		switch ($this->LdapName) {
+			case 'logindisabled':
+				if ($this->LdapValue === 'Y') {
+					$this->HtmlClass[] = 'error';
+					$this->HtmlTitle = 'Account Disabled!';
+				}
+				break;
+			
+			default:
+				// code...
+				break;
 		}
 	}
 	private function CleanCssClasses() {
@@ -163,6 +174,15 @@ class field{
 		return false;
 	}
 
+		private function allowableInconsistency() {
+			if	($this->LdapName === 'birthdate') {
+				$LdapValueWithSlashes = substr($this->LdapValue, 0,2) . '/' . substr($this->LdapValue, 2,2) . '/' . substr($this->LdapValue, 4,2);
+				if ($LdapValueWithSlashes === $this->MysqlValue)
+					return true;
+			}
+
+			return false;
+		}
 
 	//## Constructor ##################################################
 	public function field($attribute){
