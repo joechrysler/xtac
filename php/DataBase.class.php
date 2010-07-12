@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL);
 require_once 'XtacData.class.php';
 require_once 'print_nice.php';
 
@@ -37,9 +38,11 @@ class DataBase extends XtacData {
 	//## Parent Methods ########################################
 	public function getUser($inID, $inCol, &$outUser){
 		$tempArray = array();
+		$tempArray2 = array();
+		$tempArray3 = array();
 
-		$tempArray = $this->query('xtac', "PersonID like '%$inID'", '', $inCol);
-		$tempArray2 = $this->query('users2keep', "PersonID like '%$inID'");
+		$tempArray = $this->query('xtac', "PersonID = $inID", '', $inCol);
+		$tempArray2 = $this->query('users2keep', "ID like $inID", '', 'ID as PersonID, Login');
 		$tempArray3 = array_merge($tempArray, $tempArray2);
 
 		foreach ($tempArray3[0] as $key => $value)
@@ -134,10 +137,14 @@ class DataBase extends XtacData {
 
 	public function getUsername($inID, &$outUsername) {
 		$result = Array();
+		$xtacResult = array();
+		$u2kResult = array();
 
-		$xtacResult = $this->query('xtac', "PersonID like '%$inID'", '', 'Login');
-		$u2kResult  = $this->query('users2keep', "PersonID like '%$inID'", '', 'Login');
+		$xtacResult = $this->query('xtac', "PersonID = $inID", '', 'Login');
+		$u2kResult = $this->query('users2keep', "ID = $inID", '', 'Login');
+
 		$result = array_merge($xtacResult, $u2kResult);
+
 
 		//## Fail silently if no-one has that userID
 		$outUsername = (!@$result[0])?
@@ -148,7 +155,7 @@ class DataBase extends XtacData {
 	}
 	public function getHistory($inID, &$outHistory){
 		$result = Array();
-		$result = $this->query('history', "PersonID like '%$inID'", 'TimeStamp,StaffMember');
+		$result = $this->query('history', "PersonID like '$inID'", 'TimeStamp,StaffMember');
 
 		if (empty($result[0]))
 			$outHistory = null;
@@ -171,8 +178,11 @@ class DataBase extends XtacData {
 	}
 	public function searchUsers($inCriteria, &$outResults) {
 		$searchTerms = array();
+		$xtacResults = array();
+		$users2KeepResults = array();
 
-		// User is searching in "last,first" or "last, first" format
+		// If there's a comma in the search string, the user is probably searching for
+		// a name in "last, first" format.
 		if (strpos($inCriteria, ',')) {
 			$searchTerms = explode(',', $inCriteria);
 			$lastName = trim($searchTerms[0]);
@@ -182,7 +192,8 @@ class DataBase extends XtacData {
 					"NickName like '%$firstName%'";
 		}
 
-		// User is searching for in "first last" format
+		// If there's a space in the search string, the user is probably searching for
+		// a name in "first last" format.
 		elseif (strpos($inCriteria, ' ')) {
 			$searchTerms = explode(' ', $inCriteria);
 
@@ -202,7 +213,7 @@ class DataBase extends XtacData {
 		$SelectedColumns = 'LastName, NickName, PersonID, Login';
 
 		$xtacResults = $this->query('xtac', $Filter, $SortOrder, $SelectedColumns);
-		$users2KeepResults = $this->query('users2keep', "Login like '$inCriteria%' or PersonID like '%$inCriteria%'", 'Login, PersonID', 'PersonID,Login');
+		$users2KeepResults = $this->query('users2keep', "Login like '$inCriteria%'", 'Login', 'ID as PersonID, Login');
 
 		$outResults = array_merge($xtacResults, $users2KeepResults);
 

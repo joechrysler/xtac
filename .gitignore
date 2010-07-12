@@ -1,3 +1,4 @@
 *.sw*
 config.php
 css/.sass-cache/
+.sass-cache/
