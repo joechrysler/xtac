@@ -1,6 +1,5 @@
 <?php
 require_once 'XtacData.class.php';
-require_once 'print_nice.php';
 
 class LDAP extends XtacData {
 	// ## Class-variables ######################################
@@ -11,8 +10,28 @@ class LDAP extends XtacData {
 	protected $lastBindDn;
 	protected $lastBindPw;
 
+	// WARNING: Fluent Interface Ahead!
+	//   This class tries to conform to the fluent-interface paradigm for public
+	//   function returns.  See http://devzone.zend.com/article/1362 for an in 
+	//   depth explanation.  The gist is that if every public function returns 
+	//   $this, then writing driver code that uses this class is ridiculously easy.
+	//   
+	//   The only gotcha is that if you need to send output somewhere, it has to 
+	//   be through a pass-by-reference parameter.
+	//
+	//   private and protected functions can return values as normal, since they
+	//   aren't called explicitely by any driver code.  A purely fluent app would
+	//   force these to return $this too, but as far as I can see, there's no
+	//   real good reason for it.
+	//
+	//   Any new public functions must return $this, otherwise the whole idea of
+	//   clean driver code goes to pieces.  Non $this public functions force the
+	//   end-coder to keep track of which public functions return what...it's a
+	//   mess.  Don't do it.
 
 	//## Connection Management #################################
+	//  connect() : connect and bind to the ldap server using the instance host and
+	//              a given username and password
 	public function connect($inUserName, $inPassword){
 		$this->hasConnection = true;
 		$this->connection = ldap_connect($this->host);
@@ -82,7 +101,7 @@ class LDAP extends XtacData {
 			$LogMessage = @date('r') . ' - ' . $_SERVER['PHP_AUTH_USER'] . ' reset the password on ' . $userdn . "\n";
 			file_put_contents('/var/log/passreset.log', $LogMessage, FILE_APPEND);
 
-			echo '<div class="dg resetPassword">',
+			echo '<div class="dg noborder">',
 				'<dt>New Password:</dt>',
 				'<dd>',$newPass,'</dd>',
 				'</div>';
@@ -90,6 +109,31 @@ class LDAP extends XtacData {
 
 		return $this;
 	}
+	public function addGraceLogins($inUserName) {
+		$info = null;
+		$update = array();
+		$userdn = '';
+
+		$info = $this->search('o=svsu', "(cn=$inUserName)");
+
+		if ($info['count'] === 1) {
+			$userdn = $info[0]['dn'];
+			
+			$update['loginGraceRemaining'] = '0';
+
+			// Fail with an error message if the update is unsuccesful
+			if (!$this->update($userdn, $update))
+				return false;
+			
+			echo '<div class="dg noborder">',
+				'<dt>New Grace Logins:</dt>',
+				'<dd>2</dd>',
+				'</div>';
+		}
+
+		return $this;
+	}
+
 
 	//## Distinct methods ######################################
 	public function rebind() {

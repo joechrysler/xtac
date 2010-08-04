@@ -30,6 +30,7 @@ date_default_timezone_set('America/New_York');
 	$SupportHistory = array();
 	$EligibleForSoftwareCheckout = false;
 	$username = '';
+	$criticalUsers = array();
 
 // Information about the user that is currently accessing xtac
 // The role which the active user fulfills (library, admin, intern, etc.)
@@ -58,6 +59,7 @@ date_default_timezone_set('America/New_York');
 		->getHistory($Person->id, $SupportHistory)
 		->checkMSEligibility($Person->id, $EligibleForSoftwareCheckout)
 		->canResetPassword($AuthorizedUsername, $PasswordResetAllowed)
+		->getCriticalUsers($criticalUsers)
 		->getAttributes($PersonalAttributes)
 		->disconnect();
 
@@ -90,7 +92,10 @@ date_default_timezone_set('America/New_York');
 		$Person->DisplayMSSoftwareEligibility($EligibleForSoftwareCheckout);
 	elseif ($Person->isFullUser())
 		$Person->drawHistory($SupportHistory, $HistoryItemsShown);
-	if ($PasswordResetAllowed == true && $Person->isFullUser())
+	if ($PasswordResetAllowed == true && $Person->isFullUser() && !in_array($username, $criticalUsers)) {
 		$Person->drawPasswordReset($username);
-
+		//if (!$Person->hasGraceLogins())
+			$Person->drawAddGraceLogins($username);
+	}
+		
 ?>

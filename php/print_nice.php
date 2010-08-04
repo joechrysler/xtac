@@ -1,7 +1,7 @@
 <?php 
 function print_nice($elem,$max_level=10,$print_nice_stack=array()){ 
 	if(is_array($elem) || is_object($elem)){ 
-		if(in_array(&$elem,$print_nice_stack,true)){ 
+		if(in_array($elem,$print_nice_stack,true)){ 
 			echo "<font color=red>RECURSION</font>"; 
 			return; 
 		} 

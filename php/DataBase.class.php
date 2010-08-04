@@ -1,7 +1,5 @@
 <?php
-error_reporting(E_ALL);
 require_once 'XtacData.class.php';
-require_once 'print_nice.php';
 
 class DataBase extends XtacData {
 
@@ -13,6 +11,24 @@ class DataBase extends XtacData {
 	protected $arrData = Array();
 	protected $arrFieldname = Array();
 
+	// WARNING: Fluent Interface Ahead!
+	//   This class tries to conform to the fluent-interface paradigm for public
+	//   function returns.  See http://devzone.zend.com/article/1362 for an in 
+	//   depth explanation.  The gist is that if every public function returns 
+	//   $this, then writing driver code that uses this class is ridiculously easy.
+	//   
+	//   The only gotcha is that if you need to send output somewhere, it has to 
+	//   be through a pass-by-reference parameter.
+	//
+	//   private and protected functions can return values as normal, since they
+	//   aren't called explicitely by any driver code.  A purely fluent app would
+	//   force these to return $this too, but as far as I can see, there's no
+	//   real good reason for it.
+	//
+	//   Any new public functions must return $this, otherwise the whole idea of
+	//   clean driver code goes to pieces.  If you write a public function that
+	//   doesn't return $this you force the end-coder to keep track of which
+	//   public functions return what...it's a mess.  Don't do it.
 
 	//## Connection Management #################################
 	public function connect($inUsername, $inPassword) {
@@ -37,6 +53,8 @@ class DataBase extends XtacData {
 
 	//## Parent Methods ########################################
 	public function getUser($inID, $inCol, &$outUser){
+		// Look for a user with the given id in the xtac table and the users2keep
+		// table.  If it exists in either, send it out as $outUser
 		$tempArray = array();
 		$tempArray2 = array();
 		$tempArray3 = array();
@@ -80,11 +98,16 @@ class DataBase extends XtacData {
 		return $this;
 	}
 	public function getAttributes(&$outAttributes) {
+		// Gets an array of all fields in the xtac database
 		$outAttributes = $this->query('fields');
 
 		return $this;
 	}
 	public function getRole($inLogin, &$outRole) {
+		// Retrieve the access role of the given user.
+		//
+		// Not many people need access to this site, so a list of people that have
+		// each role is just stored in the roles table in the xtac database.
 		$result = Array();
 		$result = $this->query('access_control', "login='$inLogin'");
 
@@ -95,6 +118,11 @@ class DataBase extends XtacData {
 		return $this;
 	}
 	public function getAuthorizedFields($inLogin, &$outMysql, &$outLdap) {
+		// Not everyone has access to every field in the database.  Interns,
+		// for instance, really don't need to see people's social security number
+		// This function checks a user's role, then returns arrays of the 
+		// fields in xtac and ldap which that user has access to.
+
 		//## Initialize Variables #############################
 		$result = Array();
 		$role = '';
@@ -112,6 +140,11 @@ class DataBase extends XtacData {
 		return $this;
 	}
 	public function canResetPassword($inLogin, &$result) {
+		// Not every user should be able to reset people's passwords.  This
+		// function just checks the roles table to see if the current user
+		// has sufficient permission to reset a password.  If so, it displays
+		// the password reset button, if not, it does not.
+
 		$query  = 'access_control.login = \'';
 		$query .= $_SERVER['PHP_AUTH_USER'];
 		$query .= '\' and access_control.role = roles.role';
@@ -124,6 +157,11 @@ class DataBase extends XtacData {
 		return $this;
 	}
 	public function checkMSEligibility($inID, &$outResult) {
+		// Regular employees have access to a library of Microsoft Software
+		// This function checks whether or not a given user id has access
+		// to that library.
+		//
+		// Only the library role uses this function right now.
 		$result = array();
 
 		$result = $this->query('xtac', "PersonID like '%$inID'", '', 'RegEmployee');
@@ -136,6 +174,10 @@ class DataBase extends XtacData {
 
 
 	public function getUsername($inID, &$outUsername) {
+		// Searches for a given id in the xtac and users2keep tables and 
+		// returns the username that belongs to that id.
+		//
+		// outUsername will be false if the id doesn't exist.
 		$result = Array();
 		$xtacResult = array();
 		$u2kResult = array();
@@ -153,7 +195,28 @@ class DataBase extends XtacData {
 
 		return $this;
 	}
+	public function getCriticalUsers(&$outUsers) {
+		// There are a few users in xtac whose passwords shouldn't be able to 
+		// be changed by any random intern with an xtac login.  This function
+		// Checks the cricitalusers table for a list of those users (called...
+		// wait for it...Critical Users).  It returns a single-dimensional array
+		// of those users.
+
+		$result = array();
+
+		$result = @$this->query('criticalusers', '', '', 'Login');
+
+		foreach ($result as $key => $value) {
+			$outUsers[] = $value['Login'];
+		}
+
+		return $this;
+	}
 	public function getHistory($inID, &$outHistory){
+		// This function fetches the support history for a given user id.  It
+		// returns a two-dimmensional array of support center logs (timestamp,
+		// support staffer who logged the incident and any comments they made)
+
 		$result = Array();
 		$result = $this->query('history', "PersonID like '$inID'", 'TimeStamp,StaffMember');
 
@@ -165,6 +228,10 @@ class DataBase extends XtacData {
 		return $this;
 	}
 	public function addComment($inID, $inUser, $inComment){
+		// Adds a comment to the support history of the given user id.  This is the
+		// function that performs the actual query that records the current time,
+		// the current support staffer, and any comments in the history table.
+		
 		$dataToInsert = array($inID, $inUser, 'NOW()', $this->connection->real_escape_string($inComment));
 		$this->insert('history', $dataToInsert);
 
@@ -177,6 +244,17 @@ class DataBase extends XtacData {
 		return $this;
 	}
 	public function searchUsers($inCriteria, &$outResults) {
+		// This function takes a string of $inCriteria and searches through
+		// xtac and users2keep looking for a user that matches.  It figures out
+		// which terms in the database the user is looking for and performs the
+		// proper query automatically.
+		//
+		// For security reasons, these queries should only ever return the last name,
+		// first name, user id and username of an individual.
+		//
+		// This function is primarily called asynchronously by the javascript
+		// autocomplete library for amazing on-the-fly searching awesomeness.
+
 		$searchTerms = array();
 		$xtacResults = array();
 		$users2KeepResults = array();
@@ -224,6 +302,8 @@ class DataBase extends XtacData {
 
 	//## Generic Query ###################################################
 	private function query($inTable, $inFilter = '', $inOrder = '', $inCol = '*'){
+		// Perform a query on a given table, using an optional filter string, an
+		// optional orderby string and an optional list of columns to return
 
 		$queryString = '';         // Abfragestring, der an die Datenbank gesendet wird
 		$mysqlQuery = false;       // Das Ergebnis der Abfrage

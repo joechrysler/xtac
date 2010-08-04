@@ -67,8 +67,15 @@ function displayResults(item) {
 			$('#dialog').dialog('open');
 			return false;
 		});
+	$('#addGraceLogins')
+		.submit(function () {addGraceLogins($('#username').val());return false;});
 
 	$('#cmdResetPassword')
+		.mousedown(function () {$(this).addClass('active');})
+		.mouseup(function () {$(this).removeClass('active');})
+		.mouseleave(function () {$(this).removeClass('active');});
+
+	$('#cmdAddGraceLogins')
 		.mousedown(function () {$(this).addClass('active');})
 		.mouseup(function () {$(this).removeClass('active');})
 		.mouseleave(function () {$(this).removeClass('active');});
@@ -92,6 +99,17 @@ function resetPassword(inUsername) {
 		$('#resetPassword')
 			.hide()
 			.before(data);
+	});
+}
+
+function addGraceLogins(inUsername) {
+	var addURL = 'addGraceLogins.php?cn=' + $.trim(inUsername);
+
+	$.get(addURL, function (data) {
+		$('#addGraceLogins')
+			.hide()
+			.before(data);
+		$('#GraceLoginsRemaining').next().html('2');
 	});
 }
 

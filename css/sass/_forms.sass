@@ -24,7 +24,7 @@ input#searchField
   +border-bottom-left-radius(0)
   +border-bottom-right-radius(0)
 
-input#cmdResetPassword
+input#cmdResetPassword, input#cmdAddGraceLogins
   width: 100%
   margin: 0
   line-height: 1.4em
@@ -34,6 +34,9 @@ input#cmdResetPassword
   +bg-gradient(white, #eeeeee)
   +box-shadow(rgba(0, 0, 0, 0.15), 0, 1px, 3px)
 
-input#cmdResetPassword.active
+input#cmdResetPassword.active, input#cmdAddGraceLogins.active
   +bg-gradient(#dddddd, #eeeeee)
   +box-shadow(rgba(0, 0, 0, 0.15), 0, 1px, 3px, false, inset)
+
+.noborder
+  border-top: none !important

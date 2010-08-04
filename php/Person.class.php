@@ -1,12 +1,30 @@
 <?php
 require_once 'config.php';
 require_once 'Category.class.php';
-require_once 'print_nice.php';
 
 class Person
 {
 	protected $categories = array();
 	public $id;
+	
+	// WARNING: Fluent Interface Ahead!
+	//   This class tries to conform to the fluent-interface paradigm for public
+	//   function returns.  See http://devzone.zend.com/article/1362 for an in 
+	//   depth explanation.  The gist is that if every public function returns 
+	//   $this, then writing driver code that uses this class is ridiculously easy.
+	//   
+	//   The only gotcha is that if you need to send output somewhere, it has to 
+	//   be through a pass-by-reference parameter.
+	//
+	//   private and protected functions can return values as normal, since they
+	//   aren't called explicitely by any driver code.  A purely fluent app would
+	//   force these to return $this too, but as far as I can see, there's no
+	//   real good reason for it.
+	//
+	//   Any new public functions must return $this, otherwise the whole idea of
+	//   clean driver code goes to pieces.  If you write a public function that
+	//   doesn't return $this you force the end-coder to keep track of which
+	//   public functions return what...it's a mess.  Don't do it.
 
 	// Import Data
 	public function importCategories($inArray){
@@ -55,7 +73,7 @@ class Person
 
 
 
-	// Drawing Functions
+	// Display Data
 	public function draw(){
 		$categories = array();
 		$categories[0] = $this->categories['identity'];
@@ -124,17 +142,21 @@ class Person
 			'<input type="submit" id="cmdResetPassword" name="cmdResetPassword" value="Reset Password" />', "\n",
 			'</form>';
 
-		return $this;
-	}
-
-	public function drawPasswordResetForm() {
-		echo '<dl id="passwordReset">', "\n\t",
-			'<h2>reset password</h2>', "\n\t";
-
-		require_once 'forms/passwordReset.html';
+		echo '</dl>';
 
 		return $this;
 	}
+	public function drawAddGraceLogins($inUsername) {
+		echo '<dl id="GraceLoginsForm">', "\n\t";
+
+		echo '<form id="addGraceLogins" autocomplete="off">', "\n\t",
+			'<input type="hidden" name="username" id="username" value="',$inUsername,'" />',"\n\t",
+			'<input type="submit" id="cmdAddGraceLogins" name="cmdAddGraceLogins" value="Add Grace Logins" />', "\n",
+			'</form>';
+
+		echo '</dl>';
+	}
+
 	public function DisplayMSSoftwareEligibility($inEligible) {
 		echo '<dl id="mscheckout">', "\n\t"
 			, '<h2>microsoft software</h2>', "\n\t"
@@ -168,9 +190,16 @@ class Person
 
 	}
 
+	public function hasGraceLogins(){
+		if (array_key_exists('GraceLoginsRemaining',$this->categories['catchall']->attributeList))
+			return ($this->categories['catchall']->attributeList['GraceLoginsRemaining']->LdapValue === '0'
+			    ||  $this->categories['catchall']->attributeList['GraceLoginsRemaining']->LdapValue === null)?
+				false:
+				true;
+	}
+	
 // *************** Testing Methods*******************
 	public function printLdapData($inArray){
-		print_nice($inArray);
 		return $this;
 	}
 }
