@@ -1,0 +1,59 @@
+dl {
+	/* Border Radius */
+	border-radius:5px;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+
+	/* Simple Drop Shadow */
+	-webkit-box-shadow: 1px 1px 7px rgba(153, 153, 153, 0.2);
+	-moz-box-shadow: 1px 1px 5px rgba(153, 153, 153, 0.2);
+	box-shadow: 1px 1px 7px rgba(153, 153, 153, 0.2);
+
+	/* Background */
+	background: #eee;
+	background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#ddd));
+	background: -moz-linear-gradient(top,  #eee,  #ddd);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#eee', endColorstr='#ddd');
+}
+
+div.resetPassword {
+	border-top-style: none;
+}
+
+div.error {
+	border-style: none;
+	color: white;
+
+	-moz-box-shadow: 0 2px 4px rgba(0,0,0,.25);
+	-webkit-box-shadow: 0 2px 4px rgba(0,0,0,.25);
+	box-shadow: 0 2px 4px rgba(0,0,0,.25);
+
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+
+	/* Gradient Background */
+	background-color: #f00;
+	background: -webkit-gradient(linear, left top, left bottom, from(#FF5F50), to(#f00));
+	background: -moz-linear-gradient(top,  #FF5F50,  #f00);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF5F50', endColorstr='#f00');
+}
+
+input {
+	 background-color: #fff;
+	 border: 1px solid #ccc;
+
+	 -moz-box-shadow: inset 0 1px 3px rgba(0,0,0,.15);
+	 -webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,.15);
+	 box-shadow: inset 0 1px 3px rgba(0,0,0,.15);
+
+	 -webkit-border-radius: 5px;
+	 -moz-border-radius: 5px;
+	 border-radius: 5px;
+
+	 padding-left: .4em;
+	 margin-bottom: 1em;
+
+	 outline: none;
+ }
+

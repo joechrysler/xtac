@@ -94,7 +94,7 @@ date_default_timezone_set('America/New_York');
 		$Person->drawHistory($SupportHistory, $HistoryItemsShown);
 	if ($PasswordResetAllowed == true && $Person->isFullUser() && !in_array($username, $criticalUsers)) {
 		$Person->drawPasswordReset($username);
-		//if (!$Person->hasGraceLogins())
+		if (!$Person->hasGraceLogins())
 			$Person->drawAddGraceLogins($username);
 	}
 		

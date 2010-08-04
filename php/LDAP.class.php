@@ -119,7 +119,7 @@ class LDAP extends XtacData {
 		if ($info['count'] === 1) {
 			$userdn = $info[0]['dn'];
 			
-			$update['loginGraceRemaining'] = '0';
+			$update['loginGraceRemaining'] = '2';
 
 			// Fail with an error message if the update is unsuccesful
 			if (!$this->update($userdn, $update))

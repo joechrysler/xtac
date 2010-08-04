@@ -1,0 +1,121 @@
+#result {
+	width: 95%;
+	text-align: center;
+	margin: 0 auto;
+}
+
+dl {
+	position: relative;
+	line-height: 1.5em;
+	text-align: left;
+	overflow: auto;
+	padding: .5em;
+	margin: 1.3em .6em;
+}
+dl#history div.dg {
+	padding: 0 0 1em 0 ;
+	height: auto;
+}
+
+div.dg dd.multi {
+	display: inline;
+}
+
+
+div.dg {
+	overflow: auto;
+	position: relative;
+	clear: both;
+	height: auto;
+	border-top: 1px dotted #BBB;
+	margin: .2em 0;
+	text-align: right;
+}
+
+
+div.error {
+	line-height: 2.5em;
+	padding: 0 .6em;
+
+}
+div.newComment {
+	display: none;
+}
+
+dt {
+	float: left;
+	text-align: left;
+
+	padding-right: 3px;
+	font-weight: bold;
+}
+
+dd {
+	margin: 0;
+	list-style: none;
+}
+
+
+dd.multi {
+	padding: 0;
+	width: auto;
+	display: inline;
+	clear: none;
+}
+
+/*dt {*/
+/*float: left;*/
+/*clear: left;*/
+/*text-align: left;*/
+/*width: auto;*/
+/*height: auto;*/
+/*margin: 0;*/
+/*padding-right: .6em;*/
+
+/*font-weight: bold;*/
+/*}*/
+/*dt.timestamp {*/
+/*width: 15em;*/
+/*text-align: left;*/
+/*}*/
+
+/*dd.inline, dd.StreetAddress {*/
+/*display: inline;*/
+/*margin: 0 0 0 .5em;*/
+/*}*/
+/*dd.staff {*/
+/*text-align: right;*/
+/*font-style: italic;*/
+/*float: right;*/
+/*}*/
+/*dd.comments {*/
+/*clear: both;*/
+/*text-align: left;*/
+/*width: auto;*/
+/*margin: .6em 0 .3em 1em;*/
+/*}*/
+/*dd {*/
+/*text-align: right;*/
+/*position: relative;*/
+/*margin: 0 0 0 0;*/
+/*}*/
+dd#ResidentialCity, dd#MailingCity {
+	display: block;
+	clear: right;
+	/*margin: 0 0 0 10.7em;*/
+}
+
+form#addComments {
+	width: 100%;
+}
+
+#newComments {
+	width: 100%;
+	margin: auto auto;
+	font-size: 1.3em;
+}
+
+#searchField {
+	text-align: center;
+	padding: .2em 0;
+}

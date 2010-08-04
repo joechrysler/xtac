@@ -1,0 +1,21 @@
+$default-box-shadow-color: #333333 !default
+$default-box-shadow-h-offset: 1px !default
+$default-box-shadow-v-offset: 1px !default
+$default-box-shadow-blur: 5px !default
+$default-box-shadow-spread: false !default
+$default-box-shadow-inset: false !default
+
+=box-shadow($color: $default-box-shadow-color, $hoff: $default-box-shadow-h-offset, $voff: $default-box-shadow-v-offset, $blur: $default-box-shadow-blur, $spread: $default-box-shadow-spread, $inset: $default-box-shadow-inset)
+  $full: $color $hoff $voff $blur
+  $is-spread: unquote("")
+  @if $spread
+    $is-spread: $spread
+  @if $color == none
+    +experimental(box-shadow, none, -moz, -webkit, not -o, not -ms, not -khtml, official)
+  @else
+    @if $inset
+      +experimental(box-shadow, $full $is-spread $inset, -moz, -webkit, not -o, not -ms, not -khtml, official)
+    @else
+      @if $spread
+        +experimental(box-shadow, $full, not -moz, -webkit, not -o, not -ms, not -khtml, not official)
+      +experimental(box-shadow, $full $is-spread, -moz, -webkit, not -o, not -ms, not -khtml, official)

@@ -1,0 +1,34 @@
+@import shared
+
+// Specify the number of columns
+=column-count($n)
+  +experimental(column-count, $n, -moz, -webkit, -o, not -ms, not -khtml, official)
+
+// Specify the gap between columns e.g. `20px`
+=column-gap($u)
+  +experimental(column-gap, $u, -moz, -webkit, -o, not -ms, not -khtml, official)
+
+// Specify the width of columns e.g. `100px`
+=column-width($u)
+  +experimental(column-width, $u, -moz, -webkit, -o, not -ms, not -khtml, official)
+
+// Specify the width of the rule between columns e.g. `1px`
+=column-rule-width($w)
+  +experimental(rule-width, $w, -moz, -webkit, -o, not -ms, not -khtml, official)
+
+// Specify the style of the rule between columns e.g. `dotted`.
+// This works like border-style.
+=column-rule-style($s)
+  +experimental(rule-style, unquote($s), -moz, -webkit, -o, not -ms, not -khtml, official)
+
+// Specify the style of the rule between columns e.g. `dotted`.
+// This works like border-color.
+
+=column-rule-color($c)
+  +experimental(rule-color, unquote($s), -moz, -webkit, -o, not -ms, not -khtml, official)
+
+// Mixin encompassing all column rule rules
+// For example:
+//     +column-rule(1px, solid, #c00)
+=column-rule($w, $s: solid, $c: black)
+  +experimental(column-rule, $w $s $c, -moz, -webkit, -o, not -ms, not -khtml, official)

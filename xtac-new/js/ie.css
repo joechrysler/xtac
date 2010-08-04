@@ -1,0 +1,3 @@
+$.ready(function () {
+	DD_belatedPNG.fix('body');
+});
