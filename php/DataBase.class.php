@@ -55,15 +55,17 @@ class DataBase extends XtacData {
 	public function getUser($inID, $inCol, &$outUser){
 		// Look for a user with the given id in the xtac table and the users2keep
 		// table.  If it exists in either, send it out as $outUser
-		$tempArray = array();
-		$tempArray2 = array();
-		$tempArray3 = array();
+		$xtacResults = array();
+		$users2keepResults = array();
+		$xmtdResults = array();
+		$results = array();
 
-		$tempArray = $this->query('xtac', "PersonID = $inID", '', $inCol);
-		$tempArray2 = $this->query('users2keep', "ID like $inID", '', 'ID as PersonID, Login');
-		$tempArray3 = array_merge($tempArray, $tempArray2);
+		$xtacResults = $this->query('xtac', "PersonID = $inID", '', $inCol);
+		$users2keepResults = $this->query('users2keep', "ID like $inID", '', 'ID as PersonID, Login');
+		$xmtdResults = $this->query('xmtd', "ID like $inID", '', 'ID as PersonID, Login');
+		$results = array_merge($tempArray, $users2keepResults, $xmtdResults);
 
-		foreach ($tempArray3[0] as $key => $value)
+		foreach ($results[0] as $key => $value)
 			$outUser[$key] = parent::translateValue($value);
 
 		return $this;
@@ -180,12 +182,14 @@ class DataBase extends XtacData {
 		// outUsername will be false if the id doesn't exist.
 		$result = Array();
 		$xtacResult = array();
-		$u2kResult = array();
+		$users2keepResult = array();
+		$xmtdResult = array();
 
 		$xtacResult = $this->query('xtac', "PersonID = $inID", '', 'Login');
-		$u2kResult = $this->query('users2keep', "ID = $inID", '', 'Login');
+		$users2keepResult = $this->query('users2keep', "ID = $inID", '', 'Login');
+		$xmtdResult = $this->query('xmtd', "ID = $inID", '', 'Login');
 
-		$result = array_merge($xtacResult, $u2kResult);
+		$result = array_merge($xtacResult, $users2keepResult, $xmtdResult);
 
 
 		//## Fail silently if no-one has that userID
@@ -258,6 +262,7 @@ class DataBase extends XtacData {
 		$searchTerms = array();
 		$xtacResults = array();
 		$users2KeepResults = array();
+		$xmtdResults = array();
 
 		// If there's a comma in the search string, the user is probably searching for
 		// a name in "last, first" format.
@@ -292,8 +297,9 @@ class DataBase extends XtacData {
 
 		$xtacResults = $this->query('xtac', $Filter, $SortOrder, $SelectedColumns);
 		$users2KeepResults = $this->query('users2keep', "Login like '$inCriteria%'", 'Login', 'ID as PersonID, Login');
+		$xmtdResults = $this->query('xmtd', "Login like '$inCriteria%'", 'Login', 'ID as PersonID, Login');
 
-		$outResults = array_merge($xtacResults, $users2KeepResults);
+		$outResults = array_merge($xtacResults, $users2KeepResults, $xmtdResults);
 
 		return $this;
 	}
