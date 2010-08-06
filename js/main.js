@@ -49,7 +49,7 @@ function displayResults(item) {
 
 	$('#result')
 		.columnize({
-			width: 400,
+			width: 354,
 			lastNeverTallest: true
 		});
 
