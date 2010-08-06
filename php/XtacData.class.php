@@ -46,7 +46,7 @@ abstract class XtacData {
 		elseif (strlen($inValue) !== 0 && $inValue[0] === 'c' && $inValue[1] == 'n') {
 			$temparray = array();
 			$temparray = explode(',', $inValue);
-			$inValue = implode(' ', $temparray);
+			$inValue = implode(', ', $temparray);
 
 			return $inValue;
 		}
