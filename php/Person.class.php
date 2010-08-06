@@ -92,7 +92,7 @@ class Person
 		return $this;
 	}
 	public function drawHistory($inArray, $HistoryItemsShown = 0){
-		echo '<dl id="history">', "\n\t";
+		echo '<ul id="history">', "\n\t";
 		echo (count($inArray) > $HistoryItemsShown)?
 			'<h2 class="moreAvailable">':
 			'<h2>';
@@ -109,7 +109,7 @@ class Person
 		}
 
 		require_once 'forms/historyForm.html';
-		echo '</dl>';
+		echo '</ul>';
 
 		return $this;
 	}
@@ -125,9 +125,9 @@ class Person
 
 	private function drawHistoryItem($inRecord, $addClass = ''){
 		echo '<div class="dg ',$addClass,'">', "\n\t\t",
-			'<dt class="timestamp">',@date("F j, Y - g:i a", @strtotime($inRecord['TimeStamp'])),'</dt>', "\n\t\t\t",
-			'<dd class="staff">',$inRecord['StaffMember'],'</dd>',"\n\t\t\t",
-			'<dd class="comments">',$inRecord['Comments'],'</dd>',"\n\t\t",
+			'<li class="head timestamp">',@date("F j, Y - g:i a", @strtotime($inRecord['TimeStamp'])),'</li>', "\n\t\t\t",
+			'<li class="staff">',$inRecord['StaffMember'],'</li>',"\n\t\t\t",
+			'<li class="comments">',$inRecord['Comments'],'</li>',"\n\t\t",
 			'</div>';
 
 		return $this;
