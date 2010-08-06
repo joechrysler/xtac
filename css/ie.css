@@ -1,1 +1,1 @@
-body{background-color:#555 !important;background-image:none !important}#LastName,#MiddleInnitial,#ResidentialState,#ResidentialZip,#MailingState,#MailingZip{margin-left:0.5em}#Headline{width:10em}
+body{background-color:#555 !important;background-image:none !important}#LastName,#MiddleInnitial,#ResidentialState,#ResidentialZip,#MailingState,#MailingZip{margin-left:0.5em}#Headline{width:10em !important;color:#000 !important}
