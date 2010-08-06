@@ -20,6 +20,7 @@ $MySQLDatabase
 	->searchUsers($_GET['term'], $results)
 	->disconnect();
 
+// Matching users should be returned in standard json format.
 //echo json_encode($results),'<br/><br/>';
 // Replacement for json_encode.  Remove after netserv upgrades to php 5.3
 $firstItem = true;
