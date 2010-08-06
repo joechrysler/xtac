@@ -139,7 +139,7 @@ $().ready(function () {
 			source: 'search.php',
 			minLength: 2,
 			focus: function(event, ui) {
-				$('#searchField').val(filterNamelessAccounts(ui.item));
+				//$('#searchField').val(filterNamelessAccounts(ui.item));
 				return false;
 			},		
 			select: function (event, ui) {
