@@ -47,6 +47,8 @@ abstract class XtacData {
 			$temparray = array();
 			$temparray = explode($inValue, ',');
 			$inValue = implode($temparray, ' ');
+
+			return $inValue;
 		}
 
 		else {
