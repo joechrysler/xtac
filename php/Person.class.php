@@ -92,7 +92,7 @@ class Person
 		return $this;
 	}
 	public function drawHistory($inArray, $HistoryItemsShown = 0){
-		echo '<ul id="history">', "\n\t";
+		echo '<ul class="dictionary" id="history">', "\n\t";
 		echo (count($inArray) > $HistoryItemsShown)?
 			'<h2 class="moreAvailable">':
 			'<h2>';

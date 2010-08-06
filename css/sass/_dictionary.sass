@@ -8,7 +8,7 @@ $radius: 5px
     column-width: 20em;
   display: none
 
-ul.dictionary, dl
+ul.dictionary
   position: relative
   line-height: 1.8em
   text-align: left
@@ -20,7 +20,7 @@ ul.dictionary, dl
   +box-shadow(rgba(153, 153, 153, 0.2), 1px, 1px, 7px)
   background-color: #eee
 
-dl#history
+ul#history
   h2.moreAvailable
     background:
       image: url(../images/downtriangle.png)
@@ -76,11 +76,11 @@ li.head, dt
   height: auto
   font-weight: bold
 
-dt.timestamp
+li.timestamp
   width: 15em
   text-align: left
 
-dd.staff
+li.staff
   text-align: right
   margin-top: -1.5em
   font-style: italic
@@ -89,7 +89,7 @@ dd.staff
 //div.newComment
 //  display: none
 
-dd.comments
+li.comments
   display: block
   text-align: left
   clear: both
