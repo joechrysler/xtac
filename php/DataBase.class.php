@@ -63,7 +63,7 @@ class DataBase extends XtacData {
 		$xtacResults = $this->query('xtac', "PersonID = $inID", '', $inCol);
 		$users2keepResults = $this->query('users2keep', "ID like $inID", '', 'ID as PersonID, Login');
 		$xmtdResults = $this->query('xmtd', "ID like $inID", '', 'ID as PersonID, Login');
-		$results = array_merge($xtacResult, $users2keepResults, $xmtdResults);
+		$results = array_merge($xtacResults, $users2keepResults, $xmtdResults);
 
 		foreach ($results[0] as $key => $value)
 			$outUser[$key] = parent::translateValue($value);
