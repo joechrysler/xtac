@@ -43,6 +43,12 @@ abstract class XtacData {
 			return date('F j, Y', $time);
 		}
 
+		elseif (strlen($inValue !== 0 && $inValue[0] === 'c' && $inValue[1] == 'n') {
+			$temparray = array();
+			$temparray = explode($inValue, ',');
+			$inValue = implode($temparray, ' ');
+		}
+
 		else {
 			switch ($inValue) {
 				case '':
@@ -64,8 +70,6 @@ abstract class XtacData {
 					return $inValue;
 			}
 		}
-
 	}
-
 }
 ?>
