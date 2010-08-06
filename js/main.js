@@ -139,10 +139,10 @@ $().ready(function () {
 			source: 'search.php',
 			minLength: 2,
 			focus: function(event, ui) {
-				//$('#searchField').val(filterNamelessAccounts(ui.item));
 				return false;
 			},		
 			select: function (event, ui) {
+				$('#searchField').val(filterNamelessAccounts(ui.item));
 				getPerson(ui.item.PersonID);
 			}
 		})
