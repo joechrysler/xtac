@@ -52,21 +52,21 @@ date_default_timezone_set('America/New_York');
 
 	$MySQL
 		->connect($db_user, $db_pass)
-		->getRole($AuthorizedUsername, $AuthorizationLevel)
-		->getAuthorizedFields($AuthorizedUsername, $AuthorizedMySQLFields, $AuthorizedLDAPFields)
-		->getUsername($Person->id, $username)
-		->getUser($Person->id, $AuthorizedMySQLFields, $MySQLRecord)
-		->getHistory($Person->id, $SupportHistory)
-		->checkMSEligibility($Person->id, $EligibleForSoftwareCheckout)
-		->canResetPassword($AuthorizedUsername, $PasswordResetAllowed)
-		->getCriticalUsers($criticalUsers)
-		->getAttributes($PersonalAttributes)
+		->getRole($AuthorizedUsername, $AuthorizationLevel)     // What role does this admin fill?  (admin, library staff, intern, etc.)
+		->getAuthorizedFields($AuthorizedUsername, $AuthorizedMySQLFields, $AuthorizedLDAPFields)     // Which fields is this admin allowed to see?
+		->getUsername($Person->id, $username)     // What is the user's username?
+		->getUser($Person->id, $AuthorizedMySQLFields, $MySQLRecord)     // Load the user's data into the MYSQLRecord array.
+		->getHistory($Person->id, $SupportHistory)     // Fetch the user's support history.
+		->checkMSEligibility($Person->id, $EligibleForSoftwareCheckout)     // Is the user allowed to check out Microsoft Software from the Library?
+		->canResetPassword($AuthorizedUsername, $PasswordResetAllowed)     // Is the current admin allowed to reset user passwords?
+		->getCriticalUsers($criticalUsers)     // Fetch the list of users whose passwords must NOT be reset by this script.
+		->getAttributes($PersonalAttributes)     // Fetch a list of all data fields that SVSU stores about each user.
 		->disconnect();
 
 
 	$LDAP
 		->connect($ldap_user, $ldap_pass)
-		->getUser($username, $AuthorizedLDAPFields, $LDAPRecord)
+		->getUser($username, $AuthorizedLDAPFields, $LDAPRecord)     // Load the user's data into the LDAPRecord array.
 		->disconnect();
 
 	
@@ -76,9 +76,9 @@ date_default_timezone_set('America/New_York');
 // ----------------------------------------
 
 	$Person
-		->importCategories($PersonalAttributes)
-		->importLdapData($LDAPRecord)
-		->importMysqlData($MySQLRecord);
+		->importCategories($PersonalAttributes)		// Populate the Person object with an updated list of data that SVSU stores about its users.
+		->importLdapData($LDAPRecord)     // Load data from LDAP into the Person object.
+		->importMysqlData($MySQLRecord);     // Load data from MYSQL into the Person object.
 
 
 
@@ -86,15 +86,15 @@ date_default_timezone_set('America/New_York');
 //  Display data on a webpage
 // ----------------------------------------
 
-	$Person->draw();
+	$Person->draw();     // Display the user's data onscreen, indicating any inconsistencies between LDAP and MYSQL.
 	
-	if ($AuthorizationLevel === 'library')
+	if ($AuthorizationLevel === 'library')     // The current admin is a library staffer and should be notified of the user's eligibility to check out MS software
 		$Person->DisplayMSSoftwareEligibility($EligibleForSoftwareCheckout);
-	elseif ($Person->isFullUser())
+	elseif ($Person->isFullUser())     // The user is a real person, and therefore might have support history
 		$Person->drawHistory($SupportHistory, $HistoryItemsShown);
-	if ($PasswordResetAllowed == true && $Person->isFullUser() && !in_array($username, $criticalUsers)) {
+	if ($PasswordResetAllowed == true && $Person->isFullUser() && !in_array($username, $criticalUsers)) {     // The user is a real person, their password can be reset and the current admin is allowed to reset passwords.
 		$Person->drawPasswordReset($username);
-		if (!$Person->hasGraceLogins())
+		if (!$Person->hasGraceLogins())     // The user has no grace logins remaining
 			$Person->drawAddGraceLogins($username);
 	}
 		
