@@ -57,9 +57,11 @@ abstract class XtacData {
 					return null;
 					break;
 				case 'TRUE':
+				case 'true':
 					return 'Y';
 					break;
 				case 'FALSE':
+				case 'false':
 					return 'N';
 					break;
 				case 'OFF':
