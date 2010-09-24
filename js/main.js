@@ -70,12 +70,7 @@ function displayResults(item) {
 	$('#addGraceLogins')
 		.submit(function () {addGraceLogins($('#username').val());return false;});
 
-	$('#cmdResetPassword')
-		.mousedown(function () {$(this).addClass('active');})
-		.mouseup(function () {$(this).removeClass('active');})
-		.mouseleave(function () {$(this).removeClass('active');});
-
-	$('#cmdAddGraceLogins')
+	$('.button')
 		.mousedown(function () {$(this).addClass('active');})
 		.mouseup(function () {$(this).removeClass('active');})
 		.mouseleave(function () {$(this).removeClass('active');});

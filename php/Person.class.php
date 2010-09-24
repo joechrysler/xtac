@@ -139,7 +139,7 @@ class Person
 		// Draw the form for reseting a password
 		echo '<form id="resetPassword" autocomplete="off">', "\n\t",
 			'<input type="hidden" name="username" id="username" value="',$inUsername,'" />',"\n\t",
-			'<input type="submit" id="cmdResetPassword" name="cmdResetPassword" value="Reset Password" />', "\n",
+			'<input type="submit" class="button" id="cmdResetPassword" name="cmdResetPassword" value="Reset Password" />', "\n",
 			'</form>';
 
 		echo '</dl>';
@@ -151,7 +151,7 @@ class Person
 
 		echo '<form id="addGraceLogins" autocomplete="off">', "\n\t",
 			'<input type="hidden" name="username" id="username" value="',$inUsername,'" />',"\n\t",
-			'<input type="submit" id="cmdAddGraceLogins" name="cmdAddGraceLogins" value="Add Grace Logins" />', "\n",
+			'<input type="submit" class="button" id="cmdAddGraceLogins" name="cmdAddGraceLogins" value="Add Grace Logins" />', "\n",
 			'</form>';
 
 		echo '</dl>';
