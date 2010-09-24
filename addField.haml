@@ -1,0 +1,16 @@
+!!! 5
+%html
+  %head
+    %meta{:charset => "utf-8"}
+    %title Xtac meta
+    %link{:rel => :stylesheet, :href => "master.css"}
+    %link{:rel => :stylesheet, :href => "meta.css"}
+  %body
+    %h1#Headline Add fields
+    %form{:autocomplete => "off", :action => "addField.php", :method => :post}
+      %input#newMysqlField{:type => :text}
+      %input#newLdapField{:type => :text}
+      %select#authorizationLevelRequired
+        %option{:value => :library} Library
+        %option{:value => :admin} Admin
+        -#%option{:value => :other} Other
