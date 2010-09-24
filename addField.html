@@ -3,18 +3,27 @@
   <head>
     <meta charset='utf-8' />
     <title>Xtac meta</title>
-    <link href='master.css' rel='stylesheet' />
-    <link href='meta.css' rel='stylesheet' />
+    <link href='css/master.css' rel='stylesheet' />
+    <link href='css/meta.css' rel='stylesheet' />
   </head>
   <body>
     <h1 id='Headline'>Add fields</h1>
     <form action='addField.php' autocomplete='off' method='post'>
-      <input id='newMysqlField' type='text' />
-      <input id='newLdapField' type='text' />
-      <select id='authorizationLevelRequired'>
-        <option value='library'>Library</option>
-        <option value='admin'>Admin</option>
-      </select>
+      <p>
+        MySQL Field:
+        <input id='newMysqlField' type='text' />
+      </p>
+      <p>
+        LDAP Field:
+        <input id='newLdapField' type='text' />
+      </p>
+      <p>
+        Required Authorization Level:
+        <select id='authorizationLevelRequired'>
+          <option value='library'>Library</option>
+          <option value='admin'>Admin</option>
+        </select>
+      </p>
     </form>
   </body>
 </html>
