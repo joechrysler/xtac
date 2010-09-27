@@ -3,6 +3,7 @@
   <head>
     <meta charset='utf-8' />
     <title>Xtac meta</title>
+    <!-- -- StyleSheets -------------------------------------o -->
     <link href='css/master.css' rel='stylesheet' />
     <link href='css/meta.css' rel='stylesheet' />
   </head>
@@ -10,12 +11,10 @@
     <h1 id='Headline'>Add fields</h1>
     <form action='addField.php' autocomplete='off' method='post'>
       <p>
-        MySQL Field:
-        <input id='newMysqlField' type='text' />
+        <input id='newMysqlField' title='MySQL Field' type='text' />
       </p>
       <p>
-        LDAP Field:
-        <input id='newLdapField' type='text' />
+        <input id='newLdapField' title='LDAP Field' type='text' />
       </p>
       <p>
         Required Authorization Level:
@@ -25,6 +24,10 @@
         </select>
       </p>
       <input id='submit' type='submit' value='Add' />
+      <!-- -- Scripts ------------------------------------------------------o -->
+      <script src='js/jquery.min.js' type='text/javascript'></script>
+      <script src='js/jquery-ui.min.js' type='text/javascript'></script>
+      <script src='js/addfield.js' type='text/javascript'></script>
     </form>
   </body>
 </html>
