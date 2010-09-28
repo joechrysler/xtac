@@ -11,18 +11,19 @@
   %body
     %h1#Headline Add a field
     %form{:autocomplete => "off", :action => "addField.php", :method => :post}
-      %input#canonicalName{:name => :canonicalName, :title => "Canonical Name", :type => :text}
-      %input#readableName{:name => :readableName, :title => "Readable Name", :type => :text}
-      %input#category{:name => :category, :title => "Category", :type => :text}
-      %input#mysqlField{:name => :mysqlField, :title => "MySQL Field", :type => :text}
-      %input#ldapField{:name => :ldapField, :title => "LDAP Field", :type => :text}
-      %p
-        Required Authorization Level:
-        %select#authorizationLevelRequired{:name => :authorizationLevelRequired}
-          %option{:value => :library} Library
-          %option{:value => :admin} Admin
-          -#%option{:value => :other} Other
-      %input#submit{:type => :submit, :value => :Add}
+      %ul.dictionary
+        %input#canonicalName{:name => :canonicalName, :title => "Canonical Name", :type => :text}
+        %input#readableName{:name => :readableName, :title => "Readable Name", :type => :text}
+        %input#category{:name => :category, :title => "Category", :type => :text}
+        %input#mysqlField{:name => :mysqlField, :title => "MySQL Field", :type => :text}
+        %input#ldapField{:name => :ldapField, :title => "LDAP Field", :type => :text}
+        %p
+          Required Authorization Level:
+          %select#authorizationLevelRequired{:name => :authorizationLevelRequired}
+            %option{:value => :library} Library
+            %option{:value => :admin} Admin
+            -#%option{:value => :other} Other
+        %input#submit{:class => :button, :type => :submit, :value => :Add}
       
       -# Scripts ------------------------------------------------------o
       %script{:src => "js/jquery.min.js",          :type => "text/javascript"}
