@@ -247,6 +247,20 @@ class DataBase extends XtacData {
 
 		return $this;
 	}
+	public function addField($inCanonicalName, $inReadableName, $inCategory, $inMysqlField, $inLdapField=null, $inUser){
+		$dataToInsert = array(
+			$inCanonicalName,
+			$inReadableName,
+			'',	// HTML Class - used for data that need special formating
+			'',	// HTML Parent ID - used for multi-field data like "name = first + middle + last"
+			$inCategory,
+			$inMysqlField,
+			$inLdapField,
+			$inUser);
+		$this->insert('history', $dataToInsert);
+
+		return $this;
+	}
 	public function searchUsers($inCriteria, &$outResults) {
 		// This function takes a string of $inCriteria and searches through
 		// xtac and users2keep looking for a user that matches.  It figures out
