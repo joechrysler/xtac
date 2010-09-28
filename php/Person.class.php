@@ -6,6 +6,7 @@ class Person
 {
 	protected $categories = array();
 	public $id;
+	private $CheckedUnix = false;
 	
 	// WARNING: Fluent Interface Ahead!
 	//   This class tries to conform to the fluent-interface paradigm for public
@@ -190,6 +191,17 @@ class Person
 
 	}
 
+	public function validateUnixStatus() {
+		if (array_key_exists('unixUidNum', $this->categories['identity']->attributeList) &&
+			array_key_exists('unixGidNum', $this->categories['identity']->attributeList))
+			$this->categories['identity']->attributeList['unixUidNum']->LdapValue = 'T';
+		else
+			$this->categories['identity']->attributeList['unixUidNum']->LdapValue = 'F';
+		$this->categories['identity']->attributeList['unixUidNum']->HtmlClass = array();
+		$this->categories['identity']->attributeList['unixGidNum'] = null;
+
+
+	}
 	public function hasGraceLogins(){
 		if (array_key_exists('GraceLoginsRemaining',$this->categories['catchall']->attributeList))
 			return ($this->categories['catchall']->attributeList['GraceLoginsRemaining']->LdapValue === '0'

@@ -221,6 +221,10 @@ class field{
 				else
 					$this->LdapValue = 'T';
 				break;
+			case 'uidnumber':
+			case 'gidnumber':
+				Person::validateUnixStatus();
+				break;
 		}
 	}
 	private function CleanCssClasses() {
