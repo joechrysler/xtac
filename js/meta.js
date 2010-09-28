@@ -21,8 +21,7 @@ $().ready(function () {
 			ldapField: lField,
 			authorizationLevelRequired: authReq},
 			
-			function () {
-				return false;
+			function (data) {
 				$('#success').show('fast');
 			};);
 			
