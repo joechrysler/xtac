@@ -39,7 +39,7 @@ $(function () {
 			category: cat,
 			mysqlField: mField,
 			ldapField: lField,
-			authorizationLevelRequired: authReq}, function (data) {$('#success').show('fast');});
+			authorizationLevelRequired: authReq}, function (data) {$('#success').slideDown('fast');});
 
 		return false;
 	});
