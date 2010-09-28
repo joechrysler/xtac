@@ -364,8 +364,6 @@ class DataBase extends XtacData {
 			$result = false;
 		}
 
-		echo $queryString, '<br />';
-
 		return $result;
 	}
 
