@@ -4,7 +4,7 @@ $().ready(function () {
 		.mouseup(function () {$(this).removeClass('activeButton');})
 		.mouseleave(function () {$(this).removeClass('activeButton');});
 
-	$('#submit').submit(function () {
+	$('#addField').submit(function () {
 
 		var cName = $('#canonicalName').val();
 		var rName = $('#readableName').val();
