@@ -247,7 +247,9 @@ class DataBase extends XtacData {
 
 		return $this;
 	}
-	public function addField($inCanonicalName, $inReadableName, $inCategory, $inMysqlField, $inLdapField=null, $inUser){
+	public function addField($inCanonicalName, $inReadableName, $inCategory, $inMysqlField=null, $inLdapField=null, $inRole){
+		$MysqlInsertString = ',' . $inMysqlField;
+		$LdapInsertString = ',' . $inLdapField;
 		$dataToInsert = array(
 			$inCanonicalName,
 			$inReadableName,
@@ -255,9 +257,13 @@ class DataBase extends XtacData {
 			'',	// HTML Parent ID - used for multi-field data like "name = first + middle + last"
 			$inCategory,
 			$inMysqlField,
-			$inLdapField,
-			$inUser);
-		$this->insert('history', $dataToInsert);
+			$inLdapField);
+		$this->insert('fields', $dataToInsert);
+
+		if ($inMysqlField)
+			$this->updateVarChar('roles', 'MySQLFields', $MysqlInsertString, true, 'role', $inRole);
+		if ($inLdapField)
+			$this->updateVarChar('roles', 'MySQLFields', $LdapInsertString, true, 'role', $inRole);
 
 		return $this;
 	}
@@ -375,6 +381,21 @@ class DataBase extends XtacData {
 					}
 
 					$queryString .= ');';
+
+			return $this->connection->query($queryString);
+		}
+	}
+	private function updateVarChar($inTable, $inField, $inData, $append=false, $conditionField, $conditionValue){
+		// Only works for strings right now
+		$queryString = '';
+		$firstItem = true;
+
+		if ($this->hasConnection){
+			$queryString = 'update ' . $inTable . ' set ' . $inField . '=';
+			$queryString = ($append)?
+				$queryString . 'concat(' . $inField . ',\'' . $inData . '\')':
+				$queryString . '\'' . $inData . '\'';
+			$queryString =  $queryString . 'where ' . $conditionField . '=\'' . $conditionValue . '\';';
 
 			return $this->connection->query($queryString);
 		}

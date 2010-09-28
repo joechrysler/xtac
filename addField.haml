@@ -11,11 +11,11 @@
   %body
     %h1#Headline Add a field
     %form{:autocomplete => "off", :action => "addField.php", :method => :post}
-      %input#canonicalName{:type => :text, :title => "Canonical Name"}
-      %input#readableName{:type => :text, :title => "Readable Name"}
-      %input#category{:type => :text, :title => "Category"}
-      %input#mysqlField{:type => :text, :title => "MySQL Field"}
-      %input#ldapField{:type => :text, :title => "LDAP Field"}
+      %input#canonicalName{ :title => "Canonical Name",  :type => :text}
+      %input#readableName{  :title => "Readable Name",   :type => :text}
+      %input#category{      :title => "Category",        :type => :text}
+      %input#mysqlField{    :title => "MySQL Field",     :type => :text}
+      %input#ldapField{     :title => "LDAP Field",      :type => :text}
       %p
         Required Authorization Level:
         %select#authorizationLevelRequired
