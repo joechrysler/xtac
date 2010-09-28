@@ -38,8 +38,10 @@ $(function () {
 			readableName: rName,
 			category: cat,
 			mysqlField: mField,
-			ldapField: lField
-			authorizationLevelRequired: authReq},function (data) {$('#success').show('fast');});
+			ldapField: lField,
+			authorizationLevelRequired: authReq});
+
+		$('#success').show('fast');
 			
 		return false;
 	});
