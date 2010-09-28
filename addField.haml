@@ -11,16 +11,16 @@
   %body
     %h1#Headline Add a field
     %form{:autocomplete => "off", :action => "addField.php", :method => :post}
-        %input#canonicalName{:type => :text, :title => "Canonical Name"}
-        %input#readableName{:type => :text, :title => "Readable Name"}
-        %input#category{:type => :text, :title => "Category"}
-        %input#mysqlField{:type => :text, :title => "MySQL Field"}
-        %input#ldapField{:type => :text, :title => "LDAP Field"}
-        Required Authorization Level:
-        %select#authorizationLevelRequired
-          %option{:value => :library} Library
-          %option{:value => :admin} Admin
-          -#%option{:value => :other} Other
+      %input#canonicalName{:type => :text, :title => "Canonical Name"}
+      %input#readableName{:type => :text, :title => "Readable Name"}
+      %input#category{:type => :text, :title => "Category"}
+      %input#mysqlField{:type => :text, :title => "MySQL Field"}
+      %input#ldapField{:type => :text, :title => "LDAP Field"}
+      Required Authorization Level:
+      %select#authorizationLevelRequired
+        %option{:value => :library} Library
+        %option{:value => :admin} Admin
+        -#%option{:value => :other} Other
       %input#submit{:type => :submit, :value => :Add}
       
       -# Scripts ------------------------------------------------------o
