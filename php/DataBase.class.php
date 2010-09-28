@@ -1,5 +1,6 @@
 <?php
 require_once 'XtacData.class.php';
+require_once 'print_nice.php';
 
 class DataBase extends XtacData {
 
@@ -259,6 +260,9 @@ class DataBase extends XtacData {
 			$inMysqlField,
 			$inLdapField);
 		$this->insert('fields', $dataToInsert);
+
+		$testresult = $this->query('fields', 'htmlid=\''.$inCanonicalName.'\'');
+		print_nice($testresult);
 
 		if ($inMysqlField)
 			$this->updateVarChar('roles', 'MySQLFields', $MysqlInsertString, true, 'role', $inRole);
