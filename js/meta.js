@@ -23,6 +23,7 @@ $().ready(function () {
 			
 			function () {
 				$('#success').show('fast');
+				return false;
 			};);
 			
 		return false;
