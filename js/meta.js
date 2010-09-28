@@ -1,6 +1,6 @@
 $().ready(function () {
 	$('.button')
-		.mousedown(function () {$(this).addClass('active');})
-		.mouseup(function () {$(this).removeClass('active');})
-		.mouseleave(function () {$(this).removeClass('active');});
+		.mousedown(function () {$(this).addClass('activeButton');})
+		.mouseup(function () {$(this).removeClass('activeButton');})
+		.mouseleave(function () {$(this).removeClass('activeButton');});
 });
