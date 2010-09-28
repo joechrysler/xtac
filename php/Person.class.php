@@ -83,6 +83,9 @@ class Person
 		$categories[3] = $this->categories['employee'];
 		$categories[4] = $this->categories['catchall'];
 
+
+		$this->validateUnixStatus();
+
 		foreach ($this->categories as $category)
 			if (!in_array($category, $categories))
 				$categories[] = $category;
@@ -192,13 +195,13 @@ class Person
 	}
 
 	public function validateUnixStatus() {
-		if (array_key_exists('unixUidNum', categories['status']->attributeList) &&
-			array_key_exists('unixGidNum', categories['status']->attributeList))
-			categories['status']->attributeList['unixUidNum']->LdapValue = 'T';
+		if (array_key_exists('unixUidNum', $this->categories['status']->attributeList) &&
+			array_key_exists('unixGidNum', $this->categories['status']->attributeList))
+			$this->categories['status']->attributeList['unixUidNum']->LdapValue = 'T';
 		else
-			categories['status']->attributeList['unixUidNum']->LdapValue = 'F';
-		categories['status']->attributeList['unixUidNum']->HtmlClass = array();
-		categories['status']->attributeList['unixGidNum'] = null;
+			$this->categories['status']->attributeList['unixUidNum']->LdapValue = 'F';
+		$this->categories['status']->attributeList['unixUidNum']->HtmlClass = array();
+		$this->categories['status']->attributeList['unixGidNum'] = null;
 
 
 	}
