@@ -10,8 +10,6 @@
 
   %body
     %h1#Headline Add a field
-    %ul{:class => "dictionary success"}
-      %li Field successfully aded
     %form#addField{:autocomplete => "off", :action => "addField.php", :method => :post}
       %ul.dictionary
         %input#canonicalName{:name => :canonicalName, :title => "Canonical Name", :type => :text}
@@ -26,6 +24,8 @@
             %option{:value => :admin} Admin
             -#%option{:value => :other} Other
         %input#submit{:class => :button, :type => :submit, :value => :Add}
+    %ul{:class => "dictionary success"}
+      %li Field successfully aded
       
     -# Scripts ------------------------------------------------------o
     %script{:src => "js/jquery.min.js",          :type => "text/javascript"}
