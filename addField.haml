@@ -16,11 +16,12 @@
       %input#category{:type => :text, :title => "Category"}
       %input#mysqlField{:type => :text, :title => "MySQL Field"}
       %input#ldapField{:type => :text, :title => "LDAP Field"}
-      Required Authorization Level:
-      %select#authorizationLevelRequired
-        %option{:value => :library} Library
-        %option{:value => :admin} Admin
-        -#%option{:value => :other} Other
+      %p
+        Required Authorization Level:
+        %select#authorizationLevelRequired
+          %option{:value => :library} Library
+          %option{:value => :admin} Admin
+          -#%option{:value => :other} Other
       %input#submit{:type => :submit, :value => :Add}
       
       -# Scripts ------------------------------------------------------o
