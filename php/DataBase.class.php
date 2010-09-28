@@ -254,8 +254,8 @@ class DataBase extends XtacData {
 		$dataToInsert = array(
 			$inCanonicalName,
 			$inReadableName,
-			'null',	// HTML Class - used for data that need special formating
-			'null',	// HTML Parent ID - used for multi-field data like "name = first + middle + last"
+			'NULL',	// HTML Class - used for data that need special formating
+			'NULL',	// HTML Parent ID - used for multi-field data like "name = first + middle + last"
 			$inCategory,
 			$inMysqlField,
 			$inLdapField);
