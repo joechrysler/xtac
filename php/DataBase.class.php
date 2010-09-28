@@ -401,6 +401,8 @@ class DataBase extends XtacData {
 				$queryString . '\'' . $inData . '\'';
 			$queryString =  $queryString . 'where ' . $conditionField . '=\'' . $conditionValue . '\';';
 
+			echo $queryString;
+
 			return $this->connection->query($queryString);
 		}
 	}
