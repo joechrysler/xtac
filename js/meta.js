@@ -22,8 +22,8 @@ $().ready(function () {
 			authorizationLevelRequired: authReq},
 			
 			function () {
-				$('#success').show('fast');
 				return false;
+				$('#success').show('fast');
 			};);
 			
 		return false;
