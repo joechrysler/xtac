@@ -10,7 +10,7 @@
 
   %body
     %h1#Headline Add a field
-    %form{:autocomplete => "off", :action => "addField.php", :method => :post}
+    %form#addField{:autocomplete => "off", :action => "addField.php", :method => :post}
       %ul.dictionary
         %input#canonicalName{:name => :canonicalName, :title => "Canonical Name", :type => :text}
         %input#readableName{:name => :readableName, :title => "Readable Name", :type => :text}
