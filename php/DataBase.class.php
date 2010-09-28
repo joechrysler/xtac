@@ -257,8 +257,8 @@ class DataBase extends XtacData {
 			'NULL',	// HTML Class - used for data that need special formating
 			'NULL',	// HTML Parent ID - used for multi-field data like "name = first + middle + last"
 			$inCategory,
-			$inMysqlField,
-			$inLdapField);
+			$inLdapField,
+			$inMysqlField);
 		$this->insert('fields', $dataToInsert);
 
 		$testresult = $this->query('fields', 'htmlid=\''.$inCanonicalName.'\'');
