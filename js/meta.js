@@ -19,7 +19,11 @@ $().ready(function () {
 			category: cat,
 			mysqlField: mField,
 			ldapField: lField,
-			authorizationLevelRequired: authReq});
+			authorizationLevelRequired: authReq},
+			
+			function () {
+				$('#success').show('fast');
+			};);
 			
 		return false;
 	});

@@ -12,7 +12,7 @@
     %h1#Headline Add a field
     %form#addField{:autocomplete => "off", :action => "addField.php", :method => :post}
       %ul.dictionary
-        %h2 ✓ field added
+        %h2#success ✓ field added
         %input#canonicalName{:name => :canonicalName, :title => "Canonical Name", :type => :text}
         %input#readableName{:name => :readableName, :title => "Readable Name", :type => :text}
         %input#category{:name => :category, :title => "Category", :type => :text}
