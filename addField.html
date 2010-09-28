@@ -10,13 +10,13 @@
     <h1 id='Headline'>Add a field</h1>
     <form action='addField.php' autocomplete='off' method='post'>
       <input id='canonicalName' name='canonicalName' title='Canonical Name' type='text' />
-      <input id='readableName' title='Readable Name' type='text' />
-      <input id='category' title='Category' type='text' />
-      <input id='mysqlField' title='MySQL Field' type='text' />
-      <input id='ldapField' title='LDAP Field' type='text' />
+      <input id='readableName' name='readableName' title='Readable Name' type='text' />
+      <input id='category' name='category' title='Category' type='text' />
+      <input id='mysqlField' name='mysqlField' title='MySQL Field' type='text' />
+      <input id='ldapField' name='ldapField' title='LDAP Field' type='text' />
       <p>
         Required Authorization Level:
-        <select id='authorizationLevelRequired'>
+        <select id='authorizationLevelRequired' name='authorizationLevelRequired'>
           <option value='library'>Library</option>
           <option value='admin'>Admin</option>
         </select>
