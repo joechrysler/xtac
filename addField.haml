@@ -10,6 +10,8 @@
 
   %body
     %h1#Headline Add a field
+    %ul{:class => "dictionary success"}
+      %li Field successfully aded
     %form#addField{:autocomplete => "off", :action => "addField.php", :method => :post}
       %ul.dictionary
         %input#canonicalName{:name => :canonicalName, :title => "Canonical Name", :type => :text}
