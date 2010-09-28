@@ -41,8 +41,6 @@ $(function () {
 			ldapField: lField,
 			authorizationLevelRequired: authReq}, function (data) {$('#success').show('fast');});
 
-		/*$('#success').show('fast');*/
-			
 		return false;
 	});
 });
