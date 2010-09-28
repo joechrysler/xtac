@@ -267,7 +267,7 @@ class DataBase extends XtacData {
 		if ($inMysqlField)
 			$this->updateVarChar('roles', 'MySQLFields', $MysqlInsertString, true, 'role', $inRole);
 		if ($inLdapField)
-			$this->updateVarChar('roles', 'MySQLFields', $LdapInsertString, true, 'role', $inRole);
+			$this->updateVarChar('roles', 'LdapFields', $LdapInsertString, true, 'role', $inRole);
 
 		return $this;
 	}
