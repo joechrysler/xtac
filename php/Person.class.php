@@ -192,13 +192,13 @@ class Person
 	}
 
 	public function validateUnixStatus() {
-		if (array_key_exists('unixUidNum', $this->categories['identity']->attributeList) &&
-			array_key_exists('unixGidNum', $this->categories['identity']->attributeList))
-			$this->categories['identity']->attributeList['unixUidNum']->LdapValue = 'T';
+		if (array_key_exists('unixUidNum', $this->categories['status']->attributeList) &&
+			array_key_exists('unixGidNum', $this->categories['status']->attributeList))
+			$this->categories['status']->attributeList['unixUidNum']->LdapValue = 'T';
 		else
-			$this->categories['identity']->attributeList['unixUidNum']->LdapValue = 'F';
-		$this->categories['identity']->attributeList['unixUidNum']->HtmlClass = array();
-		$this->categories['identity']->attributeList['unixGidNum'] = null;
+			$this->categories['status']->attributeList['unixUidNum']->LdapValue = 'F';
+		$this->categories['status']->attributeList['unixUidNum']->HtmlClass = array();
+		$this->categories['status']->attributeList['unixGidNum'] = null;
 
 
 	}
