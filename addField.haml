@@ -11,7 +11,7 @@
   %body
     %h1#Headline Add a field
     %form{:autocomplete => "off", :action => "addField.php", :method => :post}
-      %input#canonicalName{ :title => "Canonical Name",  :type => :text}
+      %input#canonicalName{ :name => :canonicalName, :title => "Canonical Name",  :type => :text}
       %input#readableName{  :title => "Readable Name",   :type => :text}
       %input#category{      :title => "Category",        :type => :text}
       %input#mysqlField{    :title => "MySQL Field",     :type => :text}
