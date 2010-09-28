@@ -248,7 +248,7 @@ class DataBase extends XtacData {
 
 		return $this;
 	}
-	public function addField($inCanonicalName, $inReadableName, $inCategory, $inMysqlField=null, $inLdapField=null, $inRole){
+	public function addField($inCanonicalName, $inReadableName, $inCategory, $inMysqlField='NULL', $inLdapField='NULL', $inRole){
 		$MysqlInsertString = ',' . $inMysqlField;
 		$LdapInsertString = ',' . $inLdapField;
 		$dataToInsert = array(
@@ -363,6 +363,8 @@ class DataBase extends XtacData {
 			trigger_error('Not connected to database', E_USER_ERROR);
 			$result = false;
 		}
+
+		echo $queryString, '<br />';
 
 		return $result;
 	}
