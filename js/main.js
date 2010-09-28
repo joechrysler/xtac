@@ -71,9 +71,9 @@ function displayResults(item) {
 		.submit(function () {addGraceLogins($('#username').val());return false;});
 
 	$('.button')
-		.mousedown(function () {$(this).addClass('active');})
-		.mouseup(function () {$(this).removeClass('active');})
-		.mouseleave(function () {$(this).removeClass('active');});
+		.mousedown(function () {$(this).addClass('activeButton');})
+		.mouseup(function () {$(this).removeClass('activeButton');})
+		.mouseleave(function () {$(this).removeClass('activeButton');});
 
 	$('#history').children('h2:first')
 		.unbind('click')
