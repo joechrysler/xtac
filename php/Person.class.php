@@ -201,7 +201,6 @@ class Person
 		else
 			$this->categories['status']->attributeList['unixUidNum']->LdapValue = 'F';
 		$this->categories['status']->attributeList['unixUidNum']->HtmlClass = array();
-		$this->categories['status']->attributeList['unixGidNum'] = null;
 
 
 	}
