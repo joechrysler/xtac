@@ -199,8 +199,8 @@ class Person
 		if (array_key_exists('unixUidNum', $this->categories['status']->attributeList) &&
 			array_key_exists('unixGidNum', $this->categories['status']->attributeList)) {
 			$tempVar = array('HtmlID' => 'unixUidNum',
-				'MysqlName' => NULL,
-				'LdapName' => 'uidnumber',
+				'mysql' => NULL,
+				'ldap' => 'uidnumber',
 				'LdapValue' => 'F',
 				'MysqlValue' => NULL,
 				'HtmlClass' => array('error'),
@@ -235,9 +235,8 @@ class Person
 				//'HtmlParentID' => NULL,
 				//'HtmlName' => 'Unix Profile',
 				//'HtmlTitle' => NULL);
-		}
-
-
+			}
+		return $this;
 	}
 	public    function hasGraceLogins(){
 		if (array_key_exists('GraceLoginsRemaining',$this->categories['catchall']->attributeList))
