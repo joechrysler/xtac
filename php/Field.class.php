@@ -291,7 +291,7 @@ class field{
 			$this->HtmlName = $attribute['HtmlName'];
 			$this->HtmlClass = array();
 			if (@strtolower($attribute['HtmlClass']) !== 'null')
-				$this->HtmlClass = explode(" ",$attribute['HtmlClass']);
+				$this->HtmlClass = @explode(" ",$attribute['HtmlClass']);
 
 			if (array_key_exists('MysqlValue', $attribute))
 				$this->MysqlValue = $attribute['MysqlValue'];
