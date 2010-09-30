@@ -15,7 +15,8 @@ class category{
 
 		// Child Nodes
 		foreach ($this->attributeList as $attribute)
-			if ($attribute != NULL)
+			print_nice($attribute);
+			if ($attribute !== NULL)
 				$stream .= $attribute->draw($firstItem, $multiItemId);
 		if ($stream !== '') {
 			echo "<ul id=\"$this->HtmlID\", class=\"dictionary\">\n";
