@@ -197,7 +197,7 @@ class Person
 	public    function validateUnixStatus() {
 		if (array_key_exists('unixUidNum', $this->categories['status']->attributeList) &&
 			array_key_exists('unixGidNum', $this->categories['status']->attributeList)) {
-			print_nice($this->categories['status']->attributeList['unixUidNum'];
+			print_nice($this->categories['status']->attributeList['unixUidNum']);
 			$this->categories['status']->attributeList['unixUidNum']->LdapValue = 'T';
 			$this->categories['status']->attributeList['unixGidNum']->LdapValue = 'T';
 			$this->categories['status']->attributeList['unixUidNum']->HtmlClass = array();
