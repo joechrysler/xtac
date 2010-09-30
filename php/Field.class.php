@@ -290,7 +290,7 @@ class field{
 			$this->HtmlParentID = $attribute['HtmlParentID'];
 			$this->HtmlName = $attribute['HtmlName'];
 			$this->HtmlClass = array();
-			if (strtolower($attribute['HtmlClass']) !== 'null')
+			if (@strtolower($attribute['HtmlClass']) !== 'null')
 				$this->HtmlClass = explode(" ",$attribute['HtmlClass']);
 
 			if (array_key_exists('MysqlValue', $attribute))
