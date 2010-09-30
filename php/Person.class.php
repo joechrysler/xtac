@@ -5,13 +5,13 @@ require_once 'Category.class.php';
 class Person
 {
 	protected $categories = array();
-	public $id;
-	private $CheckedUnix = false;
+	public    $id;
+	private   $CheckedUnix = false;
 	
 	// WARNING: Fluent Interface Ahead!
 	//   This class tries to conform to the fluent-interface paradigm for public
 	//   function returns.  See http://devzone.zend.com/article/1362 for an in 
-	//   depth explanation.  The gist is that if every public function returns 
+	//   depth explanation.  The gist is that if every public    function returns 
 	//   $this, then writing driver code that uses this class is ridiculously easy.
 	//   
 	//   The only gotcha is that if you need to send output somewhere, it has to 
@@ -22,13 +22,13 @@ class Person
 	//   force these to return $this too, but as far as I can see, there's no
 	//   real good reason for it.
 	//
-	//   Any new public functions must return $this, otherwise the whole idea of
-	//   clean driver code goes to pieces.  If you write a public function that
+	//   Any new public    functions must return $this, otherwise the whole idea of
+	//   clean driver code goes to pieces.  If you write a public    function that
 	//   doesn't return $this you force the end-coder to keep track of which
-	//   public functions return what...it's a mess.  Don't do it.
+	//   public    functions return what...it's a mess.  Don't do it.
 
 	// Import Data
-	public function importCategories($inArray){
+	public    function importCategories($inArray){
 		foreach ($inArray as $key => $value) {
 			$categoryName = strtolower($value['Category']);
 			if (!isset($this->categories[$categoryName]))
@@ -40,7 +40,7 @@ class Person
 
 		return $this;
 	}
-	public function importLdapData($inArray){
+	public    function importLdapData($inArray){
 		foreach ($this->categories as $Category => $AttributeList)
 			if ($AttributeList)
 				foreach ($AttributeList as $FieldName => $FieldObject)
@@ -56,7 +56,7 @@ class Person
 
 		return $this;
 	}
-	public function importMysqlData($inArray){
+	public    function importMysqlData($inArray){
 		foreach ($this->categories as $key => $value) 
 			//TODO Cleanup for loops
 			if ($value)
@@ -75,7 +75,7 @@ class Person
 
 
 	// Display Data
-	public function draw(){
+	public    function draw(){
 		$categories = array();
 		$categories[0] = $this->categories['identity'];
 		$categories[1] = $this->categories['location'];
@@ -95,7 +95,7 @@ class Person
 
 		return $this;
 	}
-	public function drawHistory($inArray, $HistoryItemsShown = 0){
+	public    function drawHistory($inArray, $HistoryItemsShown = 0){
 		echo '<ul class="dictionary" id="history">', "\n\t";
 		echo (count($inArray) > $HistoryItemsShown)?
 			'<h2 class="moreAvailable">':
@@ -118,7 +118,7 @@ class Person
 		return $this;
 	}
 
-	public function drawHistoryItems($inArray, $HistoryItemsShown){
+	public    function drawHistoryItems($inArray, $HistoryItemsShown){
 		$History = array_slice($inArray, 0, count($inArray) - $HistoryItemsShown);
 		if (is_array($History))
 			foreach ($History as $record)
@@ -127,7 +127,7 @@ class Person
 		return $this;
 	}
 
-	private function drawHistoryItem($inRecord, $addClass = ''){
+	private   function drawHistoryItem($inRecord, $addClass = ''){
 		echo '<div class="dg ',$addClass,'">', "\n\t\t",
 			'<li class="head timestamp">',@date("F j, Y - g:i a", @strtotime($inRecord['TimeStamp'])),'</li>', "\n\t\t\t",
 			'<li class="staff">',$inRecord['StaffMember'],'</li>',"\n\t\t\t",
@@ -136,7 +136,7 @@ class Person
 
 		return $this;
 	}
-	public function drawPasswordReset($inUsername){
+	public    function drawPasswordReset($inUsername){
 		echo '<dl id="passwordReset">', "\n\t";
 			//'<h2>password</h2>', "\n\t";
 
@@ -150,7 +150,7 @@ class Person
 
 		return $this;
 	}
-	public function drawAddGraceLogins($inUsername) {
+	public    function drawAddGraceLogins($inUsername) {
 		echo '<dl id="GraceLoginsForm">', "\n\t";
 
 		echo '<form id="addGraceLogins" autocomplete="off">', "\n\t",
@@ -161,7 +161,7 @@ class Person
 		echo '</dl>';
 	}
 
-	public function DisplayMSSoftwareEligibility($inEligible) {
+	public    function DisplayMSSoftwareEligibility($inEligible) {
 		echo '<dl id="mscheckout">', "\n\t"
 			, '<h2>microsoft software</h2>', "\n\t"
 			, '<div class="dg">', "\n\t\t"
@@ -178,15 +178,15 @@ class Person
 
 	}
 
-	public function locked(){
+	public    function locked(){
 		return true;
 	}
-	public function setID($inID){
+	public    function setID($inID){
 		$this->id = $inID;
 
 		return $this;
 	}
-	public function isFullUser(){
+	public    function isFullUser(){
 		if (array_key_exists('Username',$this->categories['identity']->attributeList))
 			return ($this->categories['identity']->attributeList['Username']->LdapValue === null)?
 				false:
@@ -194,7 +194,7 @@ class Person
 
 	}
 
-	public function validateUnixStatus() {
+	public    function validateUnixStatus() {
 		if (array_key_exists('unixUidNum', $this->categories['status']->attributeList) &&
 			array_key_exists('unixGidNum', $this->categories['status']->attributeList)) {
 			$this->categories['status']->attributeList['unixUidNum']->LdapValue = 'T';
@@ -206,7 +206,7 @@ class Person
 
 
 	}
-	public function hasGraceLogins(){
+	public    function hasGraceLogins(){
 		if (array_key_exists('GraceLoginsRemaining',$this->categories['catchall']->attributeList))
 			return ($this->categories['catchall']->attributeList['GraceLoginsRemaining']->LdapValue === '0'
 			    ||  $this->categories['catchall']->attributeList['GraceLoginsRemaining']->LdapValue === null)?
@@ -215,7 +215,7 @@ class Person
 	}
 	
 // *************** Testing Methods*******************
-	public function printLdapData($inArray){
+	public    function printLdapData($inArray){
 		return $this;
 	}
 }
