@@ -200,7 +200,7 @@ class Person
 			array_key_exists('unixGidNum', $this->categories['status']->attributeList)) {
 			$this->categories['status']->attributeList['unixUidNum']->LdapValue = 'T';
 			$this->categories['status']->attributeList['unixGidNum']->LdapValue = 'T';
-			$this->categories['status']->attributeList['unixUidNum']->HtmlClass = array();
+			$this->categories['status']->attributeList['unixUidNum']->HtmlClass = NULL;
 			$this->categories['status']->attributeList['unixUidNum']->HtmlClass[] = 'head';
 			}
 		else {
