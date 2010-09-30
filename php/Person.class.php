@@ -209,11 +209,15 @@ class Person
 				'HtmlParentID' => NULL,
 				'HtmlName' => 'Unix Profile',
 				'HtmlTitle' => NULL);
+			print_nice($this->categories['status']->attributeList['unixUidNum']);
 
 
 
 			$this->categories['status']->attributeList['unixUidNum']->LdapValue = 'T';
 			$this->categories['status']->attributeList['unixGidNum']->LdapValue = 'T';
+			$this->categories['status']->attributeList['unixUidNum']->HtmlClass = array();
+			$this->categories['status']->attributeList['unixUidNum']->HtmlClass[] = 'error';
+			$this->categories['status']->attributeList['unixUidNum']->HtmlClass[] = 'head';
 			print_nice($this->categories['status']->attributeList['unixUidNum']->HtmlClass);
 			print_nice($this->categories['status']->attributeList['unixGidNum']->HtmlClass);
 			}
