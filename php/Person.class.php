@@ -1,6 +1,7 @@
 <?php
 require_once 'config.php';
 require_once 'Category.class.php';
+require_once 'Field.class.php';
 
 class Person
 {
@@ -197,10 +198,7 @@ class Person
 	public    function validateUnixStatus() {
 		if (array_key_exists('unixUidNum', $this->categories['status']->attributeList) &&
 			array_key_exists('unixGidNum', $this->categories['status']->attributeList)) {
-			print_nice($this->categories['status']->attributeList['unixUidNum']);
-
-			$this->categories['status']->attributeList['unixUidNum'] = NULL;
-			$this->categories['status']->attributeList['unixUidNum'] = array('HtmlID' => 'unixUidNum',
+			$tempVar = array('HtmlID' => 'unixUidNum',
 				'MysqlName' => NULL,
 				'LdapName' => 'uidnumber',
 				'LdapValue' => 'F',
@@ -209,6 +207,12 @@ class Person
 				'HtmlParentID' => NULL,
 				'HtmlName' => 'Unix Profile',
 				'HtmlTitle' => NULL);
+			$tempField = new field($tempVar);
+
+			print_nice($this->categories['status']->attributeList['unixUidNum']);
+
+			$this->categories['status']->attributeList['unixUidNum'] = NULL;
+			$this->categories['status']->attributeList['unixUidNum'] = $tempField;
 			print_nice($this->categories['status']->attributeList['unixUidNum']);
 
 
@@ -222,15 +226,15 @@ class Person
 			print_nice($this->categories['status']->attributeList['unixGidNum']->HtmlClass);
 			}
 		else {
-			$this->categories['status']->attributeList['unixUidNum'] = array('HtmlID' => 'unixUidNum',
-				'MysqlName' => NULL,
-				'LdapName' => 'uidnumber',
-				'LdapValue' => 'F',
-				'MysqlValue' => NULL,
-				'HtmlClass' => array('error'),
-				'HtmlParentID' => NULL,
-				'HtmlName' => 'Unix Profile',
-				'HtmlTitle' => NULL);
+			//$this->categories['status']->attributeList['unixUidNum'] = array('HtmlID' => 'unixUidNum',
+				//'MysqlName' => NULL,
+				//'LdapName' => 'uidnumber',
+				//'LdapValue' => 'F',
+				//'MysqlValue' => NULL,
+				//'HtmlClass' => array('error'),
+				//'HtmlParentID' => NULL,
+				//'HtmlName' => 'Unix Profile',
+				//'HtmlTitle' => NULL);
 		}
 
 
