@@ -198,6 +198,14 @@ class Person
 	public    function validateUnixStatus() {
 		if (array_key_exists('unixUidNum', $this->categories['status']->attributeList) &&
 			array_key_exists('unixGidNum', $this->categories['status']->attributeList)) {
+
+			$this->categories['status']->attributeList['unixUidNum']->LdapValue = 'T';
+			$this->categories['status']->attributeList['unixGidNum']->LdapValue = 'T';
+			$this->categories['status']->attributeList['unixUidNum']->HtmlClass = array();
+			$this->categories['status']->attributeList['unixUidNum']->HtmlClass[] = 'error';
+			$this->categories['status']->attributeList['unixUidNum']->HtmlClass[] = 'head';
+			}
+		else {
 			$tempVar = array('HtmlID' => 'unixUidNum',
 				'mysql' => NULL,
 				'ldap' => 'uidnumber',
@@ -209,32 +217,7 @@ class Person
 				'HtmlTitle' => NULL);
 			$tempField = new field($tempVar);
 
-			print_nice($this->categories['status']->attributeList['unixUidNum']);
-
-			$this->categories['status']->attributeList['unixUidNum'] = NULL;
 			$this->categories['status']->attributeList['unixUidNum'] = $tempField;
-			print_nice($this->categories['status']->attributeList['unixUidNum']);
-
-
-
-			$this->categories['status']->attributeList['unixUidNum']->LdapValue = 'T';
-			$this->categories['status']->attributeList['unixGidNum']->LdapValue = 'T';
-			$this->categories['status']->attributeList['unixUidNum']->HtmlClass = array();
-			$this->categories['status']->attributeList['unixUidNum']->HtmlClass[] = 'error';
-			$this->categories['status']->attributeList['unixUidNum']->HtmlClass[] = 'head';
-			print_nice($this->categories['status']->attributeList['unixUidNum']->HtmlClass);
-			print_nice($this->categories['status']->attributeList['unixGidNum']->HtmlClass);
-			}
-		else {
-			//$this->categories['status']->attributeList['unixUidNum'] = array('HtmlID' => 'unixUidNum',
-				//'MysqlName' => NULL,
-				//'LdapName' => 'uidnumber',
-				//'LdapValue' => 'F',
-				//'MysqlValue' => NULL,
-				//'HtmlClass' => array('error'),
-				//'HtmlParentID' => NULL,
-				//'HtmlName' => 'Unix Profile',
-				//'HtmlTitle' => NULL);
 			}
 		return $this;
 	}
