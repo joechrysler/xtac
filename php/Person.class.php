@@ -209,7 +209,7 @@ class Person
 				'ldap' => 'uidnumber',
 				'LdapValue' => 'F',
 				'MysqlValue' => NULL,
-				'HtmlClass' => array('error'),
+				'HtmlClass' => array('error', 'head'),
 				'HtmlParentID' => NULL,
 				'HtmlName' => 'Unix Profile',
 				'HtmlTitle' => NULL);
