@@ -198,6 +198,21 @@ class Person
 		if (array_key_exists('unixUidNum', $this->categories['status']->attributeList) &&
 			array_key_exists('unixGidNum', $this->categories['status']->attributeList)) {
 			print_nice($this->categories['status']->attributeList['unixUidNum']);
+
+			$this->categories['status']->attributeList['unixUidNum'] = NULL;
+			$this->categories['status']->attributeList['unixUidNum'] = array('HtmlID' => 'unixUidNum',
+				'MysqlName' => NULL,
+				'LdapName' => 'uidnumber',
+				'LdapValue' => 'F',
+				'MysqlValue' => NULL,
+				'HtmlClass' => {'error'},
+				'HtmlParentID' => NULL,
+				'HtmlName' => 'Unix Profile',
+				'HtmlTitle' => NULL);
+			print_nice($this->categories['status']->attributeList['unixUidNum']);
+
+
+
 			$this->categories['status']->attributeList['unixUidNum']->LdapValue = 'T';
 			$this->categories['status']->attributeList['unixGidNum']->LdapValue = 'T';
 			$this->categories['status']->attributeList['unixUidNum']->HtmlClass = array();
@@ -207,8 +222,15 @@ class Person
 			print_nice($this->categories['status']->attributeList['unixGidNum']->HtmlClass);
 			}
 		else {
-			$this->categories['status']->attributeList['unixUidNum']->LdapValue = 'F';
-			$this->categories['status']->attributeList['unixUidNum']->HtmlClass[] = 'error';
+			$this->categories['status']->attributeList['unixUidNum'] = array('HtmlID' => 'unixUidNum',
+				'MysqlName' => NULL,
+				'LdapName' => 'uidnumber',
+				'LdapValue' => 'F',
+				'MysqlValue' => NULL,
+				'HtmlClass' => {'error'},
+				'HtmlParentID' => NULL,
+				'HtmlName' => 'Unix Profile',
+				'HtmlTitle' => NULL);
 		}
 
 
