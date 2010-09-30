@@ -199,9 +199,9 @@ class Person
 			array_key_exists('unixGidNum', $this->categories['status']->attributeList)) {
 			$this->categories['status']->attributeList['unixUidNum']->LdapValue = 'T';
 			$this->categories['status']->attributeList['unixGidNum']->LdapValue = 'T';
+			$this->categories['status']->attributeList['unixUidNum']->HtmlClass = array();
 			$this->categories['status']->attributeList['unixUidNum']->HtmlClass[] = 'error';
-			$this->categories['status']->attributeList['unixUidNum']->HtmlClass[] = 'visible';
-			$this->categories['status']->attributeList['unixGidNum']->HtmlClass[] = 'error';
+			$this->categories['status']->attributeList['unixUidNum']->HtmlClass[] = 'head';
 			print_nice($this->categories['status']->attributeList['unixUidNum']->HtmlClass);
 			print_nice($this->categories['status']->attributeList['unixGidNum']->HtmlClass);
 			}
