@@ -205,7 +205,7 @@ class Person
 				'LdapName' => 'uidnumber',
 				'LdapValue' => 'F',
 				'MysqlValue' => NULL,
-				'HtmlClass' => {'error'},
+				'HtmlClass' => array('error'),
 				'HtmlParentID' => NULL,
 				'HtmlName' => 'Unix Profile',
 				'HtmlTitle' => NULL);
