@@ -209,14 +209,13 @@ class Person
 				'ldap' => 'uidnumber',
 				'LdapValue' => 'F',
 				'MysqlValue' => NULL,
-				'HtmlClass' => NULL,
+				'HtmlClass' => 'error',
 				'HtmlParentID' => NULL,
 				'HtmlName' => 'Unix Profile',
 				'HtmlTitle' => NULL);
 			$tempField = new field($tempVar);
 
 			$this->categories['status']->attributeList['unixUidNum'] = $tempField;
-			$this->categories['status']->attributeList['unixUidNum']->Htmlclass[] = 'error';
 			}
 		return $this;
 	}
