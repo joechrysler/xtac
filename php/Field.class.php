@@ -30,7 +30,7 @@ class field{
 		$this->ConsistencyCheck();
 		$this->ApplyRules();
 
-		if (!$this->IsEmpty())
+    //if (!$this->IsEmpty())
 			$buffer = ($this->MultiValue())?
 				$this->drawMultiValue($firstItem, $multiItemId):
 				$this->drawSingleValue($firstItem);
