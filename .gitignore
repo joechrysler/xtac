@@ -4,3 +4,4 @@ css/.sass-cache/
 .sass-cache/
 .goutput*
 *.un*
+.htaccess

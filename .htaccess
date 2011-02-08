@@ -1,9 +1,0 @@
-AuthzLDAPAuthoritative off
-AuthBasicProvider ldap
-AuthType Basic
-AuthName "Restricted Resources"
-AuthLDAPURL ldap://ldap.svsu.edu/o=svsu?cn
-Require user hlsander drhughes schindle tjpatter jrl jrhughes mjh bmsmith2 wmgleaso asgleaso dmsapiko djwoodin drb tmmercie jdchrysl
-RewriteEngine On
-RewriteCond %{HTTPS} off
-RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
