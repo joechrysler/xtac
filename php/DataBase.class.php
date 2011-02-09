@@ -91,7 +91,7 @@ class DataBase extends XtacData {
 			$mysqlQuery = $this->connection->query($queryString);
 
 			while($mysqlResult = $mysqlQuery->fetch_assoc())
-				array_push(&$result, $mysqlResult);
+				$result[] = $mysqlResult;
 		}
 		else
 			trigger_error('Not connected to database', E_USER_ERROR);
@@ -357,7 +357,7 @@ class DataBase extends XtacData {
 
 			$result = Array();
 			while($mysqlResult = $mysqlQuery->fetch_assoc())
-				array_push(&$result, $mysqlResult);
+				$result[] = $mysqlResult;
 		}
 		else {
 			trigger_error('Not connected to database', E_USER_ERROR);
