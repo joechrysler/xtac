@@ -60,7 +60,7 @@ if ($connection = @ldap_connect($ldap_url))
 
 if($success)
 {
-	$fh = fopen('/var/log/passreset.log', 'a');
+	$fh = fopen($passwordResetLogfile, 'a');
 	fwrite($fh, date('r') . " - " . $_SERVER['PHP_AUTH_USER'] . " reset the password on " . $userdn . "\n");	
 	fclose($fh);
 
