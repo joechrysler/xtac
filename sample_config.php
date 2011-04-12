@@ -22,4 +22,5 @@
 //==============================+
   $HistoryItemsShown  = 5;
 
+  $passwordResetLogfile = '/tmp/password_resets.log';
 ?>
